@@ -81,7 +81,7 @@ section{padding-block:64px}
 .grid{display:grid;grid-template-columns:140px minmax(0,1fr);gap:44px;align-items:start}
 .rail{position:sticky;top:84px}
 .rail .n{display:block;margin-top:6px;font-size:11px;color:var(--muted)}
-@media(max-width:860px){.grid{grid-template-columns:1fr;gap:14px}.rail{position:static}section{padding-block:46px}}
+@media(max-width:860px){.grid{grid-template-columns:minmax(0,1fr);gap:14px}.grid > *{min-width:0}.rail{position:static}section{padding-block:46px}}
 .stack{display:flex;flex-direction:column;gap:22px}
 .stack-l{display:flex;flex-direction:column;gap:34px}
 
