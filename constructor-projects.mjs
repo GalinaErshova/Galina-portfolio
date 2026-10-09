@@ -18,5 +18,7 @@ export function refineProjects(html) {
   ];
   const cards = projects.map(p => `<article class="project project-${p.id}"><div class="project-art art-${p.id}" aria-label="Схема проекта ${p.type}"><span class="art-caption">${p.type}</span><div class="project-flow">${p.flow.map(label => `<span class="flow-node">${label}</span>`).join('<span class="flow-arrow" aria-hidden="true">↗</span>')}</div><span class="art-number" aria-hidden="true">${p.number}</span></div><div class="project-copy"><div class="project-meta"><span>${p.type}</span><span>${p.status}</span></div><h3>${p.title}</h3><p>${p.text}</p><a class="text-link" href="${p.url}"${p.url.startsWith('https:') ? ' target="_blank" rel="noopener"' : ''}>${p.link} ↗</a></div></article>`).join('');
   html = html.replace(/(<\/div><\/div><\/section>\s*<section class="approach)/, cards + '$1');
+  html = html.replace(/<div class="preview">[\s\S]*?<\/nav>[\s\S]*?<\/div>/, '');
+  html = html.replace(/<div class="project-meta"><span>[\s\S]*?<\/span><span>(.*?)<\/span><\/div>/g, (_, status) => ['Демо готово', 'Разбор проекта'].includes(status) ? '' : '<div class="project-meta"><span>' + status + '</span></div>');
   return html;
 }

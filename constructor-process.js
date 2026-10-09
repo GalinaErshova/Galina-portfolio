@@ -16,25 +16,38 @@ function selectProcessStep(index, automatic = false) {
     step.classList.toggle('is-active',i === index);
     step.setAttribute('aria-pressed',String(i === index));
   });
-  processRoot.querySelector('.pm-route-progress').style.width = `${index / 4 * 100}%`;
-  processRoot.style.setProperty('--process-progress', `${index / 4 * 100}%`);
+  paintProcessProgress(index / 4);
   ['.pm-detail-index','.pm-detail h3','.pm-detail p','.pm-output strong'].forEach((selector,i) => {
     processRoot.querySelector(selector).textContent = processText(data[i]);
   });
 }
 const processMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const autoplayButton = processRoot.querySelector('.pm-autoplay');
-let processTimer;
+let processFrame;
 let processVisible = false;
-let processPaused = false;
 let processIdleUntil = 0;
+function paintProcessProgress(value) {
+  const progress = processRoot.querySelector('.pm-route-progress');
+  progress.style.width = `${value * 100}%`;
+  progress.style.setProperty('--progress-height', `${value * 100}%`);
+}
 function scheduleProcess() {
-  clearTimeout(processTimer);
-  if (!processVisible || document.hidden || processPaused || processMotion.matches || document.body.classList.contains('motion-paused')) return;
-  processTimer = setTimeout(() => {
-    selectProcessStep((processIndex + 1) % processData.length, true);
-    scheduleProcess();
-  }, Math.max(6000, processIdleUntil - Date.now()));
+  cancelAnimationFrame(processFrame);
+  paintProcessProgress(processIndex / 4);
+  if (!processVisible || document.hidden || processMotion.matches || document.body.classList.contains('motion-paused') || processRoot.querySelector(':focus-visible')) return;
+  const duration = Math.max(6000, processIdleUntil - Date.now());
+  const start = performance.now();
+  const from = processIndex / 4;
+  const to = ((processIndex + 1) % processData.length) / 4;
+  function tick(now) {
+    const fraction = Math.min(1, (now - start) / duration);
+    paintProcessProgress(from + (to - from) * fraction);
+    if (fraction < 1) processFrame = requestAnimationFrame(tick);
+    else {
+      selectProcessStep((processIndex + 1) % processData.length, true);
+      scheduleProcess();
+    }
+  }
+  processFrame = requestAnimationFrame(tick);
 }
 function delayProcess() {
   processIdleUntil = Date.now() + 12000;
@@ -46,12 +59,8 @@ processRoot.querySelectorAll('.pm-step').forEach(button => button.addEventListen
 }));
 processRoot.addEventListener('pointerdown', delayProcess);
 processRoot.addEventListener('keydown', delayProcess);
-autoplayButton.addEventListener('click', () => {
-  processPaused = !processPaused;
-  autoplayButton.setAttribute('aria-pressed', String(processPaused));
-  autoplayButton.textContent = processPaused ? 'Продолжить смену этапов' : 'Приостановить смену этапов';
-  scheduleProcess();
-});
+processRoot.addEventListener('focusin', scheduleProcess);
+processRoot.addEventListener('focusout', () => setTimeout(scheduleProcess, 0));
 new IntersectionObserver(entries => {
   processVisible = entries[0].isIntersecting;
   scheduleProcess();
