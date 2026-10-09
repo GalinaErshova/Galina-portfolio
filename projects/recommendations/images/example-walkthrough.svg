@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 940" width="1120" height="940" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5A6672"/>
+    </marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1F4E79"/>
+    </marker>
+  </defs>
+
+  <rect width="1120" height="940" fill="#FFFFFF"/>
+
+  <text x="40" y="44" font-size="23" font-weight="600" fill="#1F4E79">Разбор пары статей: от разметки до блока рекомендаций</text>
+  <text x="40" y="70" font-size="14" fill="#5A6672">«Стоматология», дентальная имплантация. Все шесть признаков и обе поправки на направление</text>
+
+  <!-- ЛЕВАЯ СТАТЬЯ -->
+  <rect x="40" y="94" width="480" height="164" rx="8" fill="#F4F8FC" stroke="#1F4E79" stroke-width="1.5"/>
+  <text x="60" y="120" font-size="13" font-weight="600" fill="#1F4E79">СТАТЬЯ-ИСТОЧНИК · 2026, выпуск 4</text>
+  <text x="60" y="142" font-size="13.5" fill="#22303C">Значения крутящего момента и коэффициента</text>
+  <text x="60" y="160" font-size="13.5" fill="#22303C">стабильности различных типов дентальных</text>
+  <text x="60" y="178" font-size="13.5" fill="#22303C">имплантатов…</text>
+  <text x="60" y="203" font-size="12.5" fill="#5A6672">Запись в MEDLINE найдена · DOI подтверждён</text>
+  <text x="60" y="223" font-size="12.5" fill="#5A6672">5 дескрипторов от индексатора, 2 из них — главные</text>
+  <text x="60" y="243" font-size="12.5" fill="#5A6672">4 ключевых слова автора · 19 источников</text>
+
+  <!-- ПРАВАЯ СТАТЬЯ -->
+  <rect x="600" y="94" width="480" height="164" rx="8" fill="#F4F8FC" stroke="#1F4E79" stroke-width="1.5"/>
+  <text x="620" y="120" font-size="13" font-weight="600" fill="#1F4E79">СТАТЬЯ-КАНДИДАТ · 2025, выпуск 3</text>
+  <text x="620" y="142" font-size="13.5" fill="#22303C">Сравнительная характеристика показателей</text>
+  <text x="620" y="160" font-size="13.5" fill="#22303C">крутящего момента и первичной стабильности</text>
+  <text x="620" y="178" font-size="13.5" fill="#22303C">дентальных имплантатов…</text>
+  <text x="620" y="203" font-size="12.5" fill="#5A6672">Запись в MEDLINE найдена · DOI подтверждён</text>
+  <text x="620" y="223" font-size="12.5" fill="#5A6672">8 дескрипторов от индексатора, 2 из них — главные</text>
+  <text x="620" y="243" font-size="12.5" fill="#5A6672">4 ключевых слова автора · 18 источников</text>
+
+  <!-- ссылка между статьями -->
+  <path d="M520,176 L600,176" stroke="#1F4E79" stroke-width="2" marker-end="url(#ab)"/>
+  <text x="560" y="168" font-size="12" font-weight="600" fill="#1F4E79" text-anchor="middle">ссылается</text>
+
+  <path d="M280,258 L280,292" stroke="#5A6672" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M840,258 L840,292" stroke="#5A6672" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- ЧТО ОБЩЕГО -->
+  <rect x="40" y="292" width="1040" height="104" rx="8" fill="#FBFBFC" stroke="#C6CDD5"/>
+  <text x="60" y="316" font-size="13" font-weight="600" fill="#2E75B6">ЧТО У НИХ ОБЩЕГО</text>
+  <text x="60" y="342" font-size="13" fill="#22303C">5 дескрипторов: Dental Implantation Endosseous · Dental Implants · Torque · Swine · Animals</text>
+  <text x="60" y="363" font-size="13" fill="#22303C">Первые два помечены как основная тема у обеих статей. Torque и Swine встречаются в корпусе по два раза — редкие совпадения весят больше</text>
+  <text x="60" y="384" font-size="13" fill="#22303C">3 ключевых слова автора: имплантация · крутящий момент · первичная стабильность &#160;&#160;|&#160;&#160; 5 общих работ в списках литературы</text>
+
+  <path d="M560,396 L560,428" stroke="#5A6672" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- ШЕСТЬ ПРИЗНАКОВ -->
+  <text x="40" y="450" font-size="13" font-weight="600" fill="#2E75B6">ШЕСТЬ ПРИЗНАКОВ, ПРИВЕДЁННЫХ К ОДНИМ ГРАНИЦАМ</text>
+
+  <rect x="40" y="462" width="164" height="76" rx="6" fill="#EAF1F8" stroke="#9FB6CC"/>
+  <text x="122" y="484" font-size="12" fill="#5A6672" text-anchor="middle">общие дескрипторы</text>
+  <text x="122" y="512" font-size="22" font-weight="600" fill="#1F4E79" text-anchor="middle">0,797</text>
+  <text x="122" y="530" font-size="11.5" fill="#8A939C" text-anchor="middle">вес 0,32</text>
+
+  <rect x="216" y="462" width="164" height="76" rx="6" fill="#EAF1F8" stroke="#9FB6CC"/>
+  <text x="298" y="484" font-size="12" fill="#5A6672" text-anchor="middle">близость в дереве</text>
+  <text x="298" y="512" font-size="22" font-weight="600" fill="#1F4E79" text-anchor="middle">1,000</text>
+  <text x="298" y="530" font-size="11.5" fill="#8A939C" text-anchor="middle">вес 0,18</text>
+
+  <rect x="392" y="462" width="164" height="76" rx="6" fill="#EAF1F8" stroke="#9FB6CC"/>
+  <text x="474" y="484" font-size="12" fill="#5A6672" text-anchor="middle">сходство списков</text>
+  <text x="474" y="512" font-size="22" font-weight="600" fill="#1F4E79" text-anchor="middle">0,231</text>
+  <text x="474" y="530" font-size="11.5" fill="#8A939C" text-anchor="middle">вес 0,18</text>
+
+  <rect x="568" y="462" width="164" height="76" rx="6" fill="#EAF1F8" stroke="#9FB6CC"/>
+  <text x="650" y="484" font-size="12" fill="#5A6672" text-anchor="middle">число общих работ</text>
+  <text x="650" y="512" font-size="22" font-weight="600" fill="#1F4E79" text-anchor="middle">0,996</text>
+  <text x="650" y="530" font-size="11.5" fill="#8A939C" text-anchor="middle">вес 0,09 · 5 работ</text>
+
+  <rect x="744" y="462" width="164" height="76" rx="6" fill="#EAF1F8" stroke="#9FB6CC"/>
+  <text x="826" y="484" font-size="12" fill="#5A6672" text-anchor="middle">близость текстов</text>
+  <text x="826" y="512" font-size="22" font-weight="600" fill="#1F4E79" text-anchor="middle">0,997</text>
+  <text x="826" y="530" font-size="11.5" fill="#8A939C" text-anchor="middle">вес 0,13</text>
+
+  <rect x="920" y="462" width="160" height="76" rx="6" fill="#EAF1F8" stroke="#9FB6CC"/>
+  <text x="1000" y="484" font-size="12" fill="#5A6672" text-anchor="middle">местные термины</text>
+  <text x="1000" y="512" font-size="22" font-weight="600" fill="#1F4E79" text-anchor="middle">1,000</text>
+  <text x="1000" y="530" font-size="11.5" fill="#8A939C" text-anchor="middle">вес 0,10</text>
+
+  <path d="M560,538 L560,570" stroke="#5A6672" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- СУММА -->
+  <rect x="380" y="570" width="360" height="62" rx="8" fill="#1F4E79"/>
+  <text x="560" y="596" font-size="13" fill="#CFE0EF" text-anchor="middle">ВЗВЕШЕННАЯ СУММА — ОДНА НА ПАРУ</text>
+  <text x="560" y="622" font-size="22" font-weight="600" fill="#FFFFFF" text-anchor="middle">0,7960</text>
+
+  <!-- допуск -->
+  <path d="M560,632 L560,664" stroke="#5A6672" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="330" y="664" width="460" height="40" rx="6" fill="#FBFBFC" stroke="#C6CDD5"/>
+  <text x="560" y="689" font-size="13" fill="#22303C" text-anchor="middle">Допуск: не служебные, не сняты с публикации, запрета редактора нет</text>
+
+  <path d="M470,704 L300,742" stroke="#5A6672" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M650,704 L820,742" stroke="#5A6672" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="560" y="730" font-size="12.5" font-weight="600" fill="#2E75B6" text-anchor="middle">поправки — отдельно для каждого направления</text>
+
+  <!-- НАПРАВЛЕНИЕ 1 -->
+  <rect x="40" y="748" width="480" height="150" rx="8" fill="#F3F9F4" stroke="#4F8A56" stroke-width="1.5"/>
+  <text x="60" y="774" font-size="13" font-weight="600" fill="#2F6B37">В БЛОКЕ ПОД СТАТЬЁЙ 2026 ГОДА</text>
+  <text x="60" y="798" font-size="13" fill="#22303C">Источник сам ссылается на кандидата</text>
+  <text x="60" y="822" font-size="14" fill="#22303C">0,7960 × 1,25 (ссылка вперёд) = <tspan font-size="19" font-weight="600" fill="#2F6B37">0,9950</tspan></text>
+  <text x="60" y="848" font-size="12.5" fill="#5A6672">Свежести нет: кандидат старше. Обзора нет</text>
+  <text x="60" y="874" font-size="13.5" font-weight="600" fill="#2F6B37">Первое место в блоке. Следующая оценка — 0,3998</text>
+
+  <!-- НАПРАВЛЕНИЕ 2 -->
+  <rect x="600" y="748" width="480" height="150" rx="8" fill="#FBF6F0" stroke="#B07B3C" stroke-width="1.5"/>
+  <text x="620" y="774" font-size="13" font-weight="600" fill="#8A5C22">В БЛОКЕ ПОД СТАТЬЁЙ 2025 ГОДА</text>
+  <text x="620" y="798" font-size="13" fill="#22303C">Кандидат ссылается на источник и новее на год</text>
+  <text x="620" y="822" font-size="14" fill="#22303C">0,7960 × 1,10 × 1,01 = <tspan font-size="19" font-weight="600" fill="#8A5C22">0,8844</tspan></text>
+  <text x="620" y="848" font-size="12.5" fill="#5A6672">Ссылка назад даёт меньше, свежесть добавляет 1 %</text>
+  <text x="620" y="874" font-size="13.5" font-weight="600" fill="#8A5C22">Первое место в блоке. Следующая оценка — 0,4057</text>
+</svg>
