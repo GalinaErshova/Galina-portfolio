@@ -1,0 +1,739 @@
+{
+  "generator": "colormason 1.0.0",
+  "brand": "#164b3b",
+  "scheme": "analogous",
+  "scope": "basic",
+  "target": "AA",
+  "ramps": {
+    "primary": {
+      "50": "#effbf6",
+      "100": "#e3f3ed",
+      "200": "#cce5db",
+      "300": "#b2d4c7",
+      "400": "#93bead",
+      "500": "#72a391",
+      "600": "#558876",
+      "700": "#3c6d5c",
+      "800": "#275143",
+      "900": "#16352b",
+      "950": "#0a1d17"
+    },
+    "neutral": {
+      "50": "#f7f8f7",
+      "100": "#eeefee",
+      "200": "#dddfde",
+      "300": "#c9cccb",
+      "400": "#b0b4b2",
+      "500": "#939896",
+      "600": "#797d7b",
+      "700": "#5e6361",
+      "800": "#454847",
+      "900": "#2d2f2e",
+      "950": "#181919"
+    },
+    "success": {
+      "50": "#ebfdee",
+      "100": "#ddf7e1",
+      "200": "#c2ebc9",
+      "300": "#a3dbae",
+      "400": "#7fc68e",
+      "500": "#58ac6d",
+      "600": "#369151",
+      "700": "#177538",
+      "800": "#005724",
+      "900": "#003a16",
+      "950": "#002009"
+    },
+    "warning": {
+      "50": "#fbf8e3",
+      "100": "#f4f0d3",
+      "200": "#e7e0b3",
+      "300": "#d7cd8e",
+      "400": "#c2b463",
+      "500": "#a89833",
+      "600": "#8d7d00",
+      "700": "#6f6200",
+      "800": "#524800",
+      "900": "#362f00",
+      "950": "#1e1900"
+    },
+    "error": {
+      "50": "#fff5f3",
+      "100": "#ffe9e5",
+      "200": "#ffd3cb",
+      "300": "#ffb6ab",
+      "400": "#ff8e7e",
+      "500": "#ea6959",
+      "600": "#cd493c",
+      "700": "#ab2d23",
+      "800": "#85160f",
+      "900": "#5c0704",
+      "950": "#340503"
+    },
+    "info": {
+      "50": "#f0f9ff",
+      "100": "#e0f2ff",
+      "200": "#c0e4ff",
+      "300": "#9cd3fa",
+      "400": "#75bbec",
+      "500": "#4b9fd6",
+      "600": "#2584bc",
+      "700": "#00689b",
+      "800": "#004d73",
+      "900": "#00324e",
+      "950": "#001b2d"
+    }
+  },
+  "tokens": [
+    {
+      "name": "bg-canvas",
+      "group": "Background",
+      "ramp": "neutral",
+      "steps": {
+        "light": 100,
+        "dark": 950
+      },
+      "light": "#eeefee",
+      "dark": "#181919",
+      "role": "Page background",
+      "pair": null
+    },
+    {
+      "name": "bg-surface",
+      "group": "Background",
+      "ramp": "neutral",
+      "steps": {
+        "light": 50,
+        "dark": 900
+      },
+      "light": "#f7f8f7",
+      "dark": "#2d2f2e",
+      "role": "Card, panel",
+      "pair": null
+    },
+    {
+      "name": "bg-surface-raised",
+      "group": "Background",
+      "ramp": "neutral",
+      "steps": {
+        "light": 50,
+        "dark": 800
+      },
+      "light": "#f7f8f7",
+      "dark": "#454847",
+      "role": "Dropdown menu, popover",
+      "pair": null
+    },
+    {
+      "name": "bg-muted",
+      "group": "Background",
+      "ramp": "neutral",
+      "steps": {
+        "light": 200,
+        "dark": 700
+      },
+      "light": "#dddfde",
+      "dark": "#5e6361",
+      "role": "Table row hover, muted fill",
+      "pair": null
+    },
+    {
+      "name": "bg-brand",
+      "group": "Background",
+      "ramp": "primary",
+      "steps": {
+        "light": 700,
+        "dark": 500
+      },
+      "light": "#3c6d5c",
+      "dark": "#72a391",
+      "role": "Primary button",
+      "pair": null
+    },
+    {
+      "name": "bg-brand-hover",
+      "group": "Background",
+      "ramp": "primary",
+      "steps": {
+        "light": 800,
+        "dark": 400
+      },
+      "light": "#275143",
+      "dark": "#93bead",
+      "role": "Primary button hover",
+      "pair": null
+    },
+    {
+      "name": "bg-brand-active",
+      "group": "Background",
+      "ramp": "primary",
+      "steps": {
+        "light": 900,
+        "dark": 300
+      },
+      "light": "#16352b",
+      "dark": "#b2d4c7",
+      "role": "Primary button pressed",
+      "pair": null
+    },
+    {
+      "name": "bg-success",
+      "group": "Background",
+      "ramp": "success",
+      "steps": {
+        "light": 700,
+        "dark": 500
+      },
+      "light": "#177538",
+      "dark": "#58ac6d",
+      "role": "Success badge",
+      "pair": null
+    },
+    {
+      "name": "bg-success-subtle",
+      "group": "Background",
+      "ramp": "success",
+      "steps": {
+        "light": 100,
+        "dark": 900
+      },
+      "light": "#ddf7e1",
+      "dark": "#003a16",
+      "role": "Success banner",
+      "pair": null
+    },
+    {
+      "name": "bg-warning",
+      "group": "Background",
+      "ramp": "warning",
+      "steps": {
+        "light": 500,
+        "dark": 400
+      },
+      "light": "#a89833",
+      "dark": "#c2b463",
+      "role": "Warning badge",
+      "pair": null
+    },
+    {
+      "name": "bg-warning-subtle",
+      "group": "Background",
+      "ramp": "warning",
+      "steps": {
+        "light": 100,
+        "dark": 900
+      },
+      "light": "#f4f0d3",
+      "dark": "#362f00",
+      "role": "Warning banner",
+      "pair": null
+    },
+    {
+      "name": "bg-error",
+      "group": "Background",
+      "ramp": "error",
+      "steps": {
+        "light": 700,
+        "dark": 500
+      },
+      "light": "#ab2d23",
+      "dark": "#ea6959",
+      "role": "Destructive button",
+      "pair": null
+    },
+    {
+      "name": "bg-error-subtle",
+      "group": "Background",
+      "ramp": "error",
+      "steps": {
+        "light": 100,
+        "dark": 900
+      },
+      "light": "#ffe9e5",
+      "dark": "#5c0704",
+      "role": "Error banner",
+      "pair": null
+    },
+    {
+      "name": "bg-info",
+      "group": "Background",
+      "ramp": "info",
+      "steps": {
+        "light": 700,
+        "dark": 500
+      },
+      "light": "#00689b",
+      "dark": "#4b9fd6",
+      "role": "Info badge",
+      "pair": null
+    },
+    {
+      "name": "bg-info-subtle",
+      "group": "Background",
+      "ramp": "info",
+      "steps": {
+        "light": 100,
+        "dark": 900
+      },
+      "light": "#e0f2ff",
+      "dark": "#00324e",
+      "role": "Info banner",
+      "pair": null
+    },
+    {
+      "name": "bg-inverse",
+      "group": "Background",
+      "ramp": "neutral",
+      "steps": {
+        "light": 900,
+        "dark": 100
+      },
+      "light": "#2d2f2e",
+      "dark": "#eeefee",
+      "role": "Tooltip, toast",
+      "pair": null
+    },
+    {
+      "name": "text-primary",
+      "group": "Text",
+      "ramp": "neutral",
+      "steps": {
+        "light": 900,
+        "dark": 100
+      },
+      "light": "#2d2f2e",
+      "dark": "#eeefee",
+      "role": "Body copy",
+      "pair": "bg-canvas",
+      "contrast": {
+        "light": {
+          "vs": "bg-canvas",
+          "ratio": 11.7,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-canvas",
+          "ratio": 15.28,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "text-secondary",
+      "group": "Text",
+      "ramp": "neutral",
+      "steps": {
+        "light": 800,
+        "dark": 300
+      },
+      "light": "#454847",
+      "dark": "#c9cccb",
+      "role": "Helper text",
+      "pair": "bg-canvas",
+      "contrast": {
+        "light": {
+          "vs": "bg-canvas",
+          "ratio": 8.02,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-canvas",
+          "ratio": 10.89,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "text-tertiary",
+      "group": "Text",
+      "ramp": "neutral",
+      "steps": {
+        "light": 700,
+        "dark": 400
+      },
+      "light": "#5e6361",
+      "dark": "#b0b4b2",
+      "role": "Timestamps, captions",
+      "pair": "bg-canvas",
+      "contrast": {
+        "light": {
+          "vs": "bg-canvas",
+          "ratio": 5.31,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-canvas",
+          "ratio": 8.4,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "text-disabled",
+      "group": "Text",
+      "ramp": "neutral",
+      "steps": {
+        "light": 400,
+        "dark": 600
+      },
+      "light": "#b0b4b2",
+      "dark": "#797d7b",
+      "role": "Greyed-out label (WCAG-exempt)",
+      "pair": null
+    },
+    {
+      "name": "text-link",
+      "group": "Text",
+      "ramp": "primary",
+      "steps": {
+        "light": 700,
+        "dark": 400
+      },
+      "light": "#3c6d5c",
+      "dark": "#93bead",
+      "role": "Inline link",
+      "pair": "bg-canvas",
+      "contrast": {
+        "light": {
+          "vs": "bg-canvas",
+          "ratio": 5.15,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-canvas",
+          "ratio": 8.57,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "text-on-brand",
+      "group": "Text",
+      "ramp": "primary",
+      "steps": {
+        "light": 50,
+        "dark": 950
+      },
+      "light": "#effbf6",
+      "dark": "#0a1d17",
+      "role": "Label on primary button",
+      "pair": "bg-brand",
+      "contrast": {
+        "light": {
+          "vs": "bg-brand",
+          "ratio": 5.6,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-brand",
+          "ratio": 6.13,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "text-on-success",
+      "group": "Text",
+      "ramp": "success",
+      "steps": {
+        "light": 50,
+        "dark": 950
+      },
+      "light": "#ebfdee",
+      "dark": "#002009",
+      "role": "Label on success badge",
+      "pair": "bg-success",
+      "contrast": {
+        "light": {
+          "vs": "bg-success",
+          "ratio": 5.45,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-success",
+          "ratio": 6.23,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "text-on-warning",
+      "group": "Text",
+      "ramp": "warning",
+      "steps": {
+        "light": 950,
+        "dark": 950
+      },
+      "light": "#1e1900",
+      "dark": "#1e1900",
+      "role": "Label on warning badge",
+      "pair": "bg-warning",
+      "contrast": {
+        "light": {
+          "vs": "bg-warning",
+          "ratio": 6.03,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-warning",
+          "ratio": 8.38,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "text-on-error",
+      "group": "Text",
+      "ramp": "error",
+      "steps": {
+        "light": 50,
+        "dark": 950
+      },
+      "light": "#fff5f3",
+      "dark": "#340503",
+      "role": "Label on destructive button",
+      "pair": "bg-error",
+      "contrast": {
+        "light": {
+          "vs": "bg-error",
+          "ratio": 6.26,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-error",
+          "ratio": 5.7,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "text-on-info",
+      "group": "Text",
+      "ramp": "info",
+      "steps": {
+        "light": 50,
+        "dark": 950
+      },
+      "light": "#f0f9ff",
+      "dark": "#001b2d",
+      "role": "Label on info badge",
+      "pair": "bg-info",
+      "contrast": {
+        "light": {
+          "vs": "bg-info",
+          "ratio": 5.7,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-info",
+          "ratio": 6.05,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "text-success",
+      "group": "Text",
+      "ramp": "success",
+      "steps": {
+        "light": 700,
+        "dark": 400
+      },
+      "light": "#177538",
+      "dark": "#7fc68e",
+      "role": "Saved confirmation",
+      "pair": "bg-canvas",
+      "contrast": {
+        "light": {
+          "vs": "bg-canvas",
+          "ratio": 5.01,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-canvas",
+          "ratio": 8.7,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "text-error",
+      "group": "Text",
+      "ramp": "error",
+      "steps": {
+        "light": 700,
+        "dark": 400
+      },
+      "light": "#ab2d23",
+      "dark": "#ff8e7e",
+      "role": "Field error message",
+      "pair": "bg-canvas",
+      "contrast": {
+        "light": {
+          "vs": "bg-canvas",
+          "ratio": 5.82,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-canvas",
+          "ratio": 7.91,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "text-warning",
+      "group": "Text",
+      "ramp": "warning",
+      "steps": {
+        "light": 700,
+        "dark": 400
+      },
+      "light": "#6f6200",
+      "dark": "#c2b463",
+      "role": "Quota running low",
+      "pair": "bg-canvas",
+      "contrast": {
+        "light": {
+          "vs": "bg-canvas",
+          "ratio": 5.32,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-canvas",
+          "ratio": 8.39,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "text-info",
+      "group": "Text",
+      "ramp": "info",
+      "steps": {
+        "light": 700,
+        "dark": 400
+      },
+      "light": "#00689b",
+      "dark": "#75bbec",
+      "role": "Inline tip",
+      "pair": "bg-canvas",
+      "contrast": {
+        "light": {
+          "vs": "bg-canvas",
+          "ratio": 5.27,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-canvas",
+          "ratio": 8.45,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "text-inverse",
+      "group": "Text",
+      "ramp": "neutral",
+      "steps": {
+        "light": 50,
+        "dark": 900
+      },
+      "light": "#f7f8f7",
+      "dark": "#2d2f2e",
+      "role": "Text on tooltip or toast",
+      "pair": "bg-inverse",
+      "contrast": {
+        "light": {
+          "vs": "bg-inverse",
+          "ratio": 12.66,
+          "adjusted": false
+        },
+        "dark": {
+          "vs": "bg-inverse",
+          "ratio": 11.7,
+          "adjusted": false
+        }
+      }
+    },
+    {
+      "name": "border-subtle",
+      "group": "Border",
+      "ramp": "neutral",
+      "steps": {
+        "light": 200,
+        "dark": 800
+      },
+      "light": "#dddfde",
+      "dark": "#454847",
+      "role": "Divider between rows",
+      "pair": null
+    },
+    {
+      "name": "border-default",
+      "group": "Border",
+      "ramp": "neutral",
+      "steps": {
+        "light": 300,
+        "dark": 700
+      },
+      "light": "#c9cccb",
+      "dark": "#5e6361",
+      "role": "Input outline",
+      "pair": null
+    },
+    {
+      "name": "border-strong",
+      "group": "Border",
+      "ramp": "neutral",
+      "steps": {
+        "light": 400,
+        "dark": 600
+      },
+      "light": "#b0b4b2",
+      "dark": "#797d7b",
+      "role": "Emphasised card edge",
+      "pair": null
+    },
+    {
+      "name": "border-active",
+      "group": "Border",
+      "ramp": "primary",
+      "steps": {
+        "light": 600,
+        "dark": 500
+      },
+      "light": "#558876",
+      "dark": "#72a391",
+      "role": "Selected tab",
+      "pair": null
+    },
+    {
+      "name": "border-error",
+      "group": "Border",
+      "ramp": "error",
+      "steps": {
+        "light": 500,
+        "dark": 500
+      },
+      "light": "#ea6959",
+      "dark": "#ea6959",
+      "role": "Outline on invalid field",
+      "pair": null
+    },
+    {
+      "name": "ring-focus",
+      "group": "Focus",
+      "ramp": "primary",
+      "steps": {
+        "light": 500,
+        "dark": 400
+      },
+      "light": "#72a391",
+      "dark": "#93bead",
+      "role": "Keyboard focus ring",
+      "pair": null
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,22 @@
+const examples={knowledge:{input:'Документы<br>компании',output:'Ответ<br>и источники',note:'Можно проверить каждый вывод',caption:'Найти нужное в документах и проверить источник ответа.',index:'01 / 03'},documents:{input:'Банковская<br>выписка',output:'Разобранные<br>операции',note:'Неоднозначное проверяет человек',caption:'Разобрать операции и передать спорные случаи на проверку.',index:'02 / 03'},analytics:{input:'Данные<br>сайта',output:'Понятная<br>аналитика',note:'Объяснения на основе показателей',caption:'Увидеть изменения показателей и разобраться в причинах.',index:'03 / 03'}};
+const scene=document.querySelector('.scene');
+document.querySelectorAll('[data-scene]').forEach(button=>button.addEventListener('click',()=>{
+ const item=examples[button.dataset.scene];
+ document.querySelectorAll('[data-scene]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+ document.querySelector('.input-title').innerHTML=item.input;
+ document.querySelector('.output-title').innerHTML=document.body.classList.contains('clay')?item.output.replace('<br>',' '):item.output;
+ const note=document.querySelector('.output-note'); if(note)note.textContent=item.note;
+ document.querySelector('.scenario-caption').textContent=item.caption;
+ document.querySelector('.scene-number').textContent=item.index;
+}));
+const pause=document.querySelector('.motion-button');
+pause.addEventListener('click',()=>{const state=scene.classList.toggle('paused');pause.setAttribute('aria-pressed',String(state));pause.textContent=state?'Продолжить':'Пауза';});
+const replay=document.querySelector('.replay-button');
+if(replay)replay.addEventListener('click',()=>{scene.classList.remove('paused');pause.textContent='Пауза';pause.setAttribute('aria-pressed','false');scene.getAnimations({subtree:true}).forEach(a=>{a.currentTime=0;});});
+const visibility=new IntersectionObserver(entries=>{scene.classList.toggle('offscreen',!entries[0].isIntersecting);},{threshold:0});visibility.observe(scene);
+const projects=JSON.parse(document.querySelector('#project-data').textContent);
+const dialog=document.querySelector('.project-dialog');let opener;
+document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{const p=projects.find(x=>x.id===button.dataset.project);opener=button;dialog.querySelector('h2').textContent=p.type;dialog.querySelector('.dialog-description').textContent=p.detail;dialog.querySelector('.dialog-note').textContent=p.id==='bugflow'?'На странице проекта есть материалы жюри, презентация и описание ограничений демо.':'Подробная страница на действующем сайте пока готовится. Демонстрацию можно обсудить напрямую с Галиной.';const link=dialog.querySelector('.dialog-link');link.href=p.id==='bugflow'?p.url:'https://t.me/GalaErsh';link.textContent=p.id==='bugflow'?'Открыть страницу проекта ↗':'Обсудить демонстрацию ↗';dialog.showModal();}));
+dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
+dialog.addEventListener('close',()=>opener?.focus());
