@@ -17,3 +17,6 @@
 
 /* Lighter canvas for the blue concept. */
 .blue{--bg:#fafbfd}
+
+/* Variant navigation is available at palettes.html, not on public pages. */
+.preview{display:none!important}

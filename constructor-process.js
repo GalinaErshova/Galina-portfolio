@@ -23,14 +23,12 @@ function selectProcessStep(index, automatic = false) {
   });
 }
 const processMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const autoplayButton = processRoot.querySelector('.pm-autoplay');
 let processTimer;
 let processVisible = false;
-let processPaused = false;
 let processIdleUntil = 0;
 function scheduleProcess() {
   clearTimeout(processTimer);
-  if (!processVisible || document.hidden || processPaused || processMotion.matches || document.body.classList.contains('motion-paused')) return;
+  if (!processVisible || document.hidden || processMotion.matches || document.body.classList.contains('motion-paused')) return;
   processTimer = setTimeout(() => {
     selectProcessStep((processIndex + 1) % processData.length, true);
     scheduleProcess();
@@ -46,12 +44,6 @@ processRoot.querySelectorAll('.pm-step').forEach(button => button.addEventListen
 }));
 processRoot.addEventListener('pointerdown', delayProcess);
 processRoot.addEventListener('keydown', delayProcess);
-autoplayButton.addEventListener('click', () => {
-  processPaused = !processPaused;
-  autoplayButton.setAttribute('aria-pressed', String(processPaused));
-  autoplayButton.textContent = processPaused ? 'Продолжить смену этапов' : 'Приостановить смену этапов';
-  scheduleProcess();
-});
 new IntersectionObserver(entries => {
   processVisible = entries[0].isIntersecting;
   scheduleProcess();
