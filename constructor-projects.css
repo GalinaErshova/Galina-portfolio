@@ -17,3 +17,9 @@
 @media(max-width:850px){.clay .projects>.wrap>.section-intro{grid-template-columns:1fr;gap:26px}.clay .projects .experience-context{justify-self:start;max-width:560px}}
 @media(max-width:540px){.clay .solution-row{gap:13px;padding:21px 12px}.clay .project-demo{margin-left:16px}}
 @media(prefers-reduced-motion:reduce){.clay .solution-row{animation:none}}
+
+.clay .project{border:1px solid var(--line);background:var(--bg);overflow:hidden}
+.clay .project .project-copy{padding:28px}
+.clay .project .project-art{margin:0}
+.clay .project .project-meta:empty{display:none}
+@media(max-width:600px){.clay .project .project-copy{padding:22px}}

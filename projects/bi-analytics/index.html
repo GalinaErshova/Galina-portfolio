@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BI-аналитика сайта</title>
+<meta name="description" content="Google Search Console, Яндекс Вебмастер и Яндекс Метрика в одном отчёте. Чат отвечает на вопросы числами из ваших данных.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#EEF1F0;--surface:#FFFFFF;--surface-2:#E4E9E7;--ink:#141E1C;--ink-2:#3D4E4B;--muted:#6C7C79;
+  --line:#CDD6D3;--line-soft:#DEE5E3;--accent:#0A5F55;--accent-soft:#D7E7E3;--accent-ink:#08453E;--on-accent:#F1F6F4;
+  --signal:#A9700F;--signal-soft:#F2E7CF;--alarm:#9C3A2A;--c1:#0A5F55;--c2:#A9700F;--c3:#3F6F97;
+  --shadow:0 1px 2px rgba(20,30,28,.06),0 12px 28px -18px rgba(20,30,28,.35);--r:4px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --ground:#0D1413;--surface:#141D1C;--surface-2:#1C2726;--ink:#E7EDEB;--ink-2:#B7C4C1;--muted:#8A9996;
+  --line:#2A3937;--line-soft:#22302E;--accent:#5CC8B2;--accent-soft:#17332E;--accent-ink:#8FDCCB;--on-accent:#0B1211;
+  --signal:#D9A648;--signal-soft:#33290F;--alarm:#DE8674;--c1:#5CC8B2;--c2:#D9A648;--c3:#7FA9CE;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 32px -20px rgba(0,0,0,.8)}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --ground:#0D1413;--surface:#141D1C;--surface-2:#1C2726;--ink:#E7EDEB;--ink-2:#B7C4C1;--muted:#8A9996;
+  --line:#2A3937;--line-soft:#22302E;--accent:#5CC8B2;--accent-soft:#17332E;--accent-ink:#8FDCCB;--on-accent:#0B1211;
+  --signal:#D9A648;--signal-soft:#33290F;--alarm:#DE8674;--c1:#5CC8B2;--c2:#D9A648;--c3:#7FA9CE;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 32px -20px rgba(0,0,0,.8)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:"Golos Text","Segoe UI",system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:clamp(16px,4vw,28px)}
+h1,h2,h3{font-family:Literata,Georgia,serif;margin:0;text-wrap:balance}
+h1{font-size:clamp(32px,5vw,54px);line-height:1.1;font-weight:700;letter-spacing:-.015em}
+h2{font-size:clamp(25px,3vw,34px);line-height:1.2;font-weight:600}
+h3{font-size:20px;line-height:1.3;font-weight:600}
+p{margin:0 0 12px;color:var(--ink-2)}
+a{color:var(--accent)}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.num{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--muted);display:block;margin-bottom:10px}
+
+/* меню */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--ground) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft)}
+.top .wrap{display:flex;align-items:center;gap:20px;height:56px;overflow-x:auto;white-space:nowrap}
+.top b{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.1em}
+.top nav{display:flex;gap:18px;font-size:14px}
+.top nav a{color:var(--ink-2);text-decoration:none}
+.top nav a:hover{color:var(--accent)}
+
+section{padding-block:clamp(56px,8vw,96px);border-bottom:1px solid var(--line-soft)}
+.lead{font-size:clamp(17px,1.6vw,19px);max-width:62ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 18px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:var(--r);font-weight:500;text-decoration:none;border:1px solid var(--accent)}
+.btn.main{background:var(--accent);color:var(--on-accent)}
+.btn.sec{color:var(--accent)}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px;color:var(--muted)}
+.facts span::before{content:"● ";color:var(--accent)}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,48px);align-items:start}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:32px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+.card .ico{width:34px;height:34px;border-radius:var(--r);display:grid;place-items:center;font-weight:600;color:var(--on-accent);margin-bottom:14px}
+.card dl{margin:14px 0 0;font-size:14px}
+.card dt{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.card dd{margin:2px 0 0;color:var(--ink-2)}
+.note{font-size:14px;color:var(--muted);border-left:2px solid var(--signal);padding-left:12px;margin-top:14px}
+ul.clean{margin:0;padding-left:20px;color:var(--ink-2)}
+ul.clean li{margin:6px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:14px}
+
+/* макеты интерфейса */
+.mock{background:var(--surface);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);overflow:hidden;font-size:13px}
+.mock-bar{display:flex;gap:6px;align-items:center;padding:9px 12px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.mock-bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.mock-bar span{margin-left:10px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted)}
+.mock-body{padding:16px}
+.mock-cap{font-size:12px;color:var(--muted);margin-top:8px;font-style:italic}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:12px}
+.kpi{border:1px solid var(--line-soft);border-radius:var(--r);padding:10px}
+.kpi small{display:block;color:var(--muted);font-size:11px}
+.kpi b{font-family:"IBM Plex Mono",monospace;font-size:18px;font-weight:500}
+.kpi em{font-style:normal;font-size:11px;font-family:"IBM Plex Mono",monospace}
+.up{color:var(--accent)}.down{color:var(--alarm)}
+.fresh{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:11px;color:var(--muted);margin-bottom:10px}
+.fresh span::before{content:"● ";color:var(--accent)}
+.fresh span.old::before{color:var(--signal)}
+.change{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line-soft);border-left:3px solid var(--alarm);border-radius:var(--r);padding:9px 11px;margin-top:8px}
+.change.pos{border-left-color:var(--accent)}
+.change b{font-weight:600}
+.change small{display:block;color:var(--muted)}
+svg.chart{width:100%;height:auto;display:block}
+.bubble{border-radius:8px;padding:10px 12px;margin-bottom:10px;max-width:90%}
+.bubble.q{background:var(--accent-soft);color:var(--accent-ink);margin-left:auto}
+.bubble.a{background:var(--surface-2)}
+.tbl{width:100%;border-collapse:collapse;font-family:"IBM Plex Mono",monospace;font-size:12px;margin:8px 0}
+.tbl th,.tbl td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--line-soft)}
+.tbl th{font-weight:500;color:var(--muted)}
+.tbl td:last-child,.tbl th:last-child{text-align:right}
+.src{font-size:11px;color:var(--muted)}
+.minibtn{display:inline-block;border:1px solid var(--accent);color:var(--accent);border-radius:var(--r);padding:4px 10px;font-size:12px;margin:6px 6px 0 0}
+.minibtn.f{background:var(--accent);color:var(--on-accent)}
+.toggle{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line-soft)}
+.sw{width:30px;height:17px;border-radius:9px;background:var(--line);position:relative;flex:none}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:var(--surface)}
+.sw.on{background:var(--accent)}.sw.on::after{left:15px}
+
+/* схема */
+.flow{display:grid;gap:8px;max-width:440px}
+.flow div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px}
+.flow div small{display:block;color:var(--muted);font-size:12px}
+.flow .arr{background:none;border:0;padding:0 14px;color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:12px}
+.flow .hl{border-color:var(--accent);background:var(--accent-soft)}
+
+/* шаги */
+.steps{counter-reset:s;list-style:none;padding:0;margin:28px 0 0;display:grid;gap:12px}
+.steps li{counter-increment:s;position:relative;padding:16px 18px 16px 64px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.steps li::before{content:counter(s);position:absolute;left:18px;top:14px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent-ink);font-family:"IBM Plex Mono",monospace;font-weight:500}
+.steps li.last{border-color:var(--accent);background:var(--accent-soft)}
+.steps li.last::before{background:var(--accent);color:var(--on-accent)}
+.steps b{display:block;margin-bottom:2px}
+.steps p{margin:0;font-size:15px}
+.spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px}
+.spec div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.spec b{font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:500;display:block}
+.spec small{color:var(--muted)}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:24px}
+.plans div{border:1px dashed var(--line);border-radius:var(--r);padding:16px;background:var(--surface)}
+.plans b{display:block;margin-bottom:4px}
+.plans small{color:var(--muted)}
+footer{padding-block:28px;font-size:13px;color:var(--muted)}
+.shot{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);background:#fff}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:28px}
+.final{text-align:center}.final .btns{justify-content:center}.final .lead{margin-inline:auto}
+
+/* Система personal-site: navy, холодный голубой и техническая типографика */
+:root{
+  color-scheme:dark;
+  --ground:#020814;--surface:#0A192B;--surface-2:#071425;--ink:#F1F7FB;--ink-2:#C5D1DA;--muted:#9AACBA;
+  --line:rgb(190 219 232 / 16%);--line-soft:rgb(190 219 232 / 10%);
+  --accent:#72CDE9;--accent-soft:rgb(114 205 233 / 12%);--accent-ink:#D8F5FF;--on-accent:#020814;
+  --signal:#E3B969;--signal-soft:rgb(227 185 105 / 12%);--alarm:#F08C84;
+  --c1:#72CDE9;--c2:#E3B969;--c3:#9DE7FF;--shadow:0 20px 56px -34px rgb(0 0 0 / 78%);--r:10px;
+}
+html{scroll-behavior:smooth;background:var(--ground)}
+body{
+  min-width:320px;
+  color:var(--ink);
+  background:radial-gradient(ellipse at 78% 4%,rgb(24 91 128 / 14%),transparent 34rem),var(--ground);
+  font-family:Geist,"Segoe UI Variable","Segoe UI",Arial,sans-serif;
+}
+.wrap{max-width:1440px;padding-inline:clamp(20px,5vw,80px)}
+h1,h2,h3{font-family:Geist,"Segoe UI Variable","Segoe UI",Arial,sans-serif;letter-spacing:-.045em}
+h1{max-width:900px;font-size:clamp(40px,5.4vw,68px);line-height:1.02;font-weight:600}
+h2{font-size:clamp(32px,4vw,54px);line-height:1.06;font-weight:570}
+h3{font-size:21px;line-height:1.2;font-weight:600}
+.eyebrow,.num,.mono,.top b,.card dt,.kpi b,.kpi em,.mock-bar span,.flow .arr,.tbl,.steps li::before,.spec b{font-family:"Geist Mono",Consolas,monospace}
+.eyebrow{color:var(--accent-strong,#9DE7FF);font-size:11px;letter-spacing:.11em}
+.num{color:var(--accent);letter-spacing:.1em}
+.top{background:rgb(2 8 20 / 84%);border-color:var(--line);backdrop-filter:blur(18px)}
+.top .wrap{height:72px}
+.top b{color:var(--accent-strong,#9DE7FF);font-size:11px}
+.top nav{gap:clamp(12px,1.8vw,26px)}
+.top nav a{color:var(--ink-2);transition:color 180ms ease}
+section{padding-block:clamp(72px,9vw,124px);border-color:var(--line-soft);scroll-margin-top:72px}
+.lead{max-width:66ch;color:var(--ink-2)}
+p{color:var(--ink-2)}
+a{color:var(--accent)}
+.btn{min-height:46px;padding:12px 20px;border-radius:999px;font-weight:600;transition:transform 180ms ease,border-color 180ms ease,background-color 180ms ease}
+.btn:hover{transform:translateY(-2px)}
+.btn.main{border-color:var(--accent);color:var(--on-accent);background:var(--accent)}
+.btn.main:hover{background:var(--accent-strong,#9DE7FF)}
+.btn.sec{border-color:var(--line-strong,rgb(190 219 232 / 28%));color:var(--ink);background:rgb(7 20 37 / 42%)}
+.btn.sec:hover{border-color:var(--accent);color:var(--accent-strong,#9DE7FF)}
+.card,.steps li,.spec div,.plans div,.flow div{border-color:var(--line);background:linear-gradient(145deg,rgb(10 25 43 / 94%),rgb(6 17 31 / 96%));box-shadow:var(--shadow)}
+.card{padding:clamp(22px,3vw,30px)}
+.card .ico{border-radius:9px}
+.chip{border-color:var(--line);border-radius:999px;color:var(--ink-2);background:rgb(10 25 43 / 78%)}
+.mock,.shot{border-color:var(--line);border-radius:12px;box-shadow:0 24px 64px -38px rgb(0 0 0 / 88%)}
+.mock-bar{background:var(--surface-2);border-color:var(--line)}
+.mock-cap{color:var(--muted)}
+.steps li.last,.flow .hl{border-color:var(--accent);background:linear-gradient(135deg,rgb(114 205 233 / 13%),rgb(10 25 43 / 94%))}
+.steps li::before{border-radius:50%;background:rgb(114 205 233 / 14%);color:var(--accent-strong,#9DE7FF)}
+.steps li.last::before,.minibtn.f{background:var(--accent);color:var(--on-accent)}
+.plans div{border-style:solid}
+footer{color:var(--muted)}
+::selection{color:var(--ground);background:var(--accent-strong,#9DE7FF)}
+:focus-visible{outline:2px solid var(--accent-strong,#9DE7FF);outline-offset:4px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
+/* Скриншот блока 05 начинается на строке вводного абзаца */
+.grid2,.grid3{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+@media (min-width:850px){
+  #otchety .grid2{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    grid-template-areas:"number ." "title ." "intro screenshot" "list screenshot" "details screenshot";
+    align-items:start;
+  }
+  #otchety .grid2>div:first-child{display:contents}
+  #otchety .grid2 .num{grid-area:number}
+  #otchety .grid2 h2{grid-area:title}
+  #otchety .grid2 .lead{grid-area:intro}
+  #otchety .grid2 ul{grid-area:list}
+  #otchety .grid2 p:not(.lead){grid-area:details}
+  #otchety .grid2>figure{grid-area:screenshot;align-self:start}
+}
+@media (max-width:849px){
+  #otchety .grid2{grid-template-columns:minmax(0,1fr)}
+  #otchety .grid2>div:first-child{display:block}
+  #otchety .grid2>figure{margin-top:24px!important}
+}
+</style>
+
+<header class="top"><div class="wrap">
+  <b>BI · WEB ANALYTICS</b>
+  <nav>
+    <a href="#istochniki">Источники</a><a href="#komu">Кому подходит</a><a href="#izmeneniya">Изменения</a>
+    <a href="#chat">Чат</a><a href="#otchety">Отчёты</a><a href="#ustroystvo">Технические детали</a>
+    <a href="#razvertyvanie">Развёртывание</a><a href="#svyaz">Связь</a>
+  </nav>
+</div></header>
+
+<main>
+<!-- первый экран -->
+<section>
+  <div class="wrap grid2">
+    <div>
+      <div class="eyebrow">BI · Web analytics · AI</div>
+      <h1 style="margin-top:14px">Поисковые данные сайта в&nbsp;одном отчёте&nbsp;— и&nbsp;ответы на&nbsp;вопросы без BI-аналитика</h1>
+      <p class="lead" style="margin-top:18px">Google Search Console, Яндекс Вебмастер и&nbsp;Яндекс Метрика на&nbsp;одной панели. Система сама показывает, что изменилось, а&nbsp;на&nbsp;вопрос обычными словами отвечает числами из&nbsp;ваших данных.</p>
+      <div class="btns">
+        <a class="btn main" href="https://bi-demo.tools01.ru/">Открыть демо ↗</a>
+        <a class="btn sec" href="#svyaz">Обсудить задачу ↗</a>
+      </div>
+      <div class="facts"><span>данные на&nbsp;вашем сервере</span><span>обновление каждый день</span><span>история дольше 16&nbsp;месяцев</span></div>
+    </div>
+    <figure style="margin:0"><img class="shot" src="landing-img/02-google-itogi.png" alt="Панель «Google — итоги»: клики, показы, CTR, средняя позиция" loading="lazy"><figcaption class="mock-cap">Демо-версия: данные настоящего сайта научного издательства</figcaption></figure>
+  </div>
+</section>
+
+<!-- источники -->
+<section id="istochniki">
+  <div class="wrap">
+    <span class="num">01</span>
+    <h2>Три системы&nbsp;— три языка данных</h2>
+    <p class="lead" style="margin-top:14px">Система не&nbsp;смешивает источники в&nbsp;один показатель. Она собирает их в&nbsp;одном месте и&nbsp;оставляет за&nbsp;каждым его термины, отчёты и&nbsp;правила подсчёта.</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="ico" style="background:var(--c3)">G</div>
+        <h3>Google Search Console</h3><p style="margin-top:6px">Как сайт выглядит в&nbsp;выдаче Google и&nbsp;сколько переходов получает до&nbsp;визита.</p>
+        <dl><dt>Показатели</dt><dd>клики, показы, CTR, средняя позиция, запрос, страница, тип поиска, устройство</dd>
+        <dt>Отчёты</dt><dd>итоги Google, клики и&nbsp;показы по&nbsp;дням, запросы, группы позиций</dd></dl>
+      </div>
+      <div class="card">
+        <div class="ico" style="background:var(--alarm)">Я</div>
+        <h3>Яндекс Вебмастер</h3><p style="margin-top:6px">Какие страницы Яндекс видит в&nbsp;поиске и&nbsp;какие проблемы считает важными.</p>
+        <dl><dt>Показатели</dt><dd>страницы в&nbsp;поиске, ИКС, проблемы сайта, клики, показы, средняя позиция</dd>
+        <dt>Отчёты</dt><dd>итоги Яндекса, динамика, средняя позиция, состояние сайта</dd></dl>
+        <p class="note">Состояния привязаны к&nbsp;дате: их не&nbsp;складывают как события за&nbsp;период.</p>
+      </div>
+      <div class="card">
+        <div class="ico" style="background:var(--c2)">M</div>
+        <h3>Яндекс Метрика</h3><p style="margin-top:6px">Что человек делал после перехода на&nbsp;сайт.</p>
+        <dl><dt>Показатели</dt><dd>визиты, посетители, отказы, глубина просмотра, источник трафика, цель, страница входа</dd>
+        <dt>Отчёты</dt><dd>аудитория, визиты по&nbsp;дням, источники трафика, достижения целей</dd></dl>
+        <p class="note">Поведение читается отдельно от&nbsp;поисковых кликов и&nbsp;показов.</p>
+      </div>
+    </div>
+    <div class="gallery">
+      <img class="shot" src="landing-img/04-google-po-dnyam.png" alt="Клики и показы в Google по дням" loading="lazy">
+      <img class="shot" src="landing-img/05-yandex-sostoyanie.png" alt="Яндекс — состояние сайта" loading="lazy">
+      <img class="shot" src="landing-img/06-metrika-auditoriya.png" alt="Метрика — аудитория" loading="lazy">
+    </div>
+    <p class="mock-cap">Панели демо-версии</p>
+  </div>
+</section>
+
+<!-- кому -->
+<section id="komu">
+  <div class="wrap">
+    <span class="num">02</span>
+    <h2>Для команды, которой нужен ответ, а&nbsp;не&nbsp;ещё один кабинет</h2>
+    <div class="grid2" style="margin-top:28px">
+      <div class="card"><h3>Подходит, если</h3><ul class="clean" style="margin-top:10px">
+        <li>у&nbsp;компании есть свой маркетинг или SEO;</li><li>данные живут в&nbsp;нескольких системах;</li>
+        <li>на&nbsp;еженедельный разбор сайта не&nbsp;хватает времени;</li><li>отдельного BI-аналитика пока нет.</li></ul></div>
+      <div class="card"><h3>Особенно полезно</h3><ul class="clean" style="margin-top:10px">
+        <li>руководителю маркетинга;</li><li>SEO-специалисту;</li><li>контентной команде;</li>
+        <li>компании с&nbsp;несколькими сайтами&nbsp;— в&nbsp;одной установке живут несколько проектов.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- изменения -->
+<section id="izmeneniya">
+  <div class="wrap grid2">
+    <div>
+      <span class="num">03</span>
+      <h2>Сначала видно, что изменилось</h2>
+      <p class="lead" style="margin-top:14px">Перед отчётами система показывает, насколько свежи данные каждого источника, и&nbsp;собирает блок «Что изменилось»: резкий рост, просадку, смену уровня.</p>
+      <p>Наблюдение отвечает на&nbsp;вопросы «где» и&nbsp;«когда». Причину система не&nbsp;придумывает: её проверяет человек, а&nbsp;система подсказывает, куда смотреть.</p>
+    </div>
+    <figure style="margin:0"><img class="shot" src="landing-img/01-chto-izmenilos.png" alt="Блок «Что изменилось» с наблюдениями" loading="lazy"><figcaption class="mock-cap">Демо-версия, блок «Что изменилось»</figcaption></figure>
+  </div>
+</section>
+
+<!-- чат -->
+<section id="chat">
+  <div class="wrap">
+    <span class="num">04</span>
+    <h2>Вопрос к&nbsp;данным&nbsp;— обычными словами</h2>
+    <div class="grid2" style="margin-top:24px">
+      <div>
+        <p class="lead">Чат знает, какие данные есть в&nbsp;проекте, и&nbsp;считает ответ из&nbsp;них. Можно начать с&nbsp;готового вопроса и&nbsp;уточнять дальше.</p>
+        <div class="chips">
+          <span class="chip">Сколько кликов из&nbsp;Google за&nbsp;август?</span>
+          <span class="chip">Клики и&nbsp;показы по&nbsp;дням с&nbsp;начала года</span>
+          <span class="chip">Топ-20 запросов, которые приносят переходы</span>
+          <span class="chip">Где и&nbsp;когда просели визиты в&nbsp;августе?</span>
+          <span class="chip">Средняя позиция в&nbsp;Яндексе по&nbsp;дням</span>
+        </div>
+        <p class="note">Ответ даётся только там, где есть числа. SEO-рекомендаций и&nbsp;придуманных причин чат не&nbsp;выдаёт.</p>
+      </div>
+      <figure style="margin:0"><img class="shot" src="landing-img/10-chat-otvet.png" alt="Ответ чата: топ-10 запросов из Google за август, график и вывод" loading="lazy"><figcaption class="mock-cap">Демо-версия: ответ чата на вопрос о топ-10 запросах</figcaption></figure>
+    </div>
+
+    <div class="grid2" style="margin-top:56px">
+      <div>
+        <h3>Данных нет в&nbsp;системе&nbsp;— запросим у&nbsp;источника</h3>
+        <p style="margin-top:10px">Бывает, что нужного разреза нет в&nbsp;регулярных выгрузках: внешние ссылки, редкий отчёт Вебмастера, нестандартный срез Метрики. Тогда чат не&nbsp;отвечает «не&nbsp;знаю», а&nbsp;предлагает разовый запрос к&nbsp;API источника:</p>
+        <ol class="clean">
+          <li>показывает, какой набор данных и&nbsp;за&nbsp;какой период он возьмёт;</li>
+          <li>называет, сколько это займёт запросов из&nbsp;лимита API;</li>
+          <li>выполняет запрос только после вашего подтверждения;</li>
+          <li>отвечает по&nbsp;полученным строкам так же, как по&nbsp;данным в&nbsp;базе.</li>
+        </ol>
+        <p style="margin-top:10px">Если такой отчёт нужен регулярно, его можно добавить в&nbsp;ежедневные выгрузки.</p>
+      </div>
+      <figure style="margin:0"><img class="shot" src="landing-img/11-chat-api.png" alt="Чат предлагает запросить внешние ссылки у API Яндекс Вебмастера" loading="lazy"><figcaption class="mock-cap">Демо-версия: запрос к API выполняется только после подтверждения</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- отчёты -->
+<section id="otchety">
+  <div class="wrap grid2">
+    <div>
+      <span class="num">05</span>
+      <h2>Набор отчётов под вашу команду</h2>
+      <p class="lead" style="margin-top:14px">Основные отчёты уже собраны: итоги по&nbsp;каждому источнику, динамика, запросы, страницы, источники трафика, цели. Под задачи команды набор быстро перенастраивается в&nbsp;веб-редакторе, без программиста:</p>
+      <ul class="clean">
+        <li>включить или скрыть панели;</li>
+        <li>выбрать показатели и&nbsp;разрезы, например только мобильный трафик;</li>
+        <li>задать период и&nbsp;сравнение по&nbsp;умолчанию;</li>
+        <li>подключить нужные цели Метрики;</li>
+        <li>собрать отдельный набор панелей для каждого сайта.</li>
+      </ul>
+      <p style="margin-top:12px">Перед сохранением редактор проверяет настройку: ошибочная конфигурация не&nbsp;сломает работающий дашборд. Таблицы и&nbsp;графики выгружаются в&nbsp;CSV, PNG или PDF.</p>
+    </div>
+    <figure style="margin:0"><img class="shot" src="landing-img/12-raspolozhenie-panelej.png" alt="Настройка расположения панелей: галочки «показывать» и порядок" loading="lazy"><figcaption class="mock-cap">Демо-версия: набор и порядок панелей настраиваются галочками и перетаскиванием</figcaption></figure>
+  </div>
+</section>
+
+<!-- устройство -->
+<section id="ustroystvo">
+  <div class="wrap">
+    <span class="num">06</span>
+    <h2>Технические детали</h2>
+    <p class="lead" style="margin-top:14px">Языковая модель только переводит вопрос в&nbsp;запрос к&nbsp;данным. Считает сервер, поэтому число в&nbsp;ответе всегда совпадает с&nbsp;числом в&nbsp;базе.</p>
+    <div class="grid2" style="margin-top:28px">
+      <div class="flow">
+        <div>GSC · Вебмастер · Метрика<small>выгрузка по&nbsp;расписанию, дозапрос по&nbsp;API</small></div>
+        <div class="arr">↓</div>
+        <div>Хранилище клиента<small>DuckDB на&nbsp;вашем сервере</small></div>
+        <div class="arr">↓ ежедневный снапшот</div>
+        <div class="hl">Семантический слой<small>метрики, правила подсчёта, панели</small></div>
+        <div class="arr">↓</div>
+        <div>Дашборд · чат · экспорт<small>CSV, PNG, PDF</small></div>
+      </div>
+      <div>
+        <h3>Правила подсчёта, которые часто нарушают самодельные отчёты</h3>
+        <ul class="clean" style="margin-top:10px">
+          <li>средняя позиция взвешивается по&nbsp;показам, а&nbsp;не&nbsp;считается простым средним;</li>
+          <li>роботный трафик отделён от&nbsp;живых визитов&nbsp;— на&nbsp;реальных сайтах роботов 5–7,5&nbsp;%;</li>
+          <li>разрезы GSC по&nbsp;запросам и&nbsp;страницам не&nbsp;складываются: Google скрывает часть данных в&nbsp;каждом разрезе по-своему;</li>
+          <li>сравнение периодов считается от&nbsp;последнего дня с&nbsp;данными, а&nbsp;не&nbsp;от&nbsp;«сегодня»;</li>
+          <li>история копится дольше 16&nbsp;месяцев, которые хранит сам Google.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid3">
+      <div class="card"><h3>Безопасность</h3><ul class="clean" style="margin-top:10px">
+        <li>каждый клиент&nbsp;— отдельная установка;</li><li>базы источников открываются только на&nbsp;чтение;</li>
+        <li>ключи хранятся отдельными файлами вне кода;</li><li>вход по&nbsp;приглашению.</li></ul></div>
+      <div class="card"><h3>Модель ИИ на&nbsp;выбор</h3><p style="margin-top:10px">YandexGPT, Xiaomi MiMo или Claude&nbsp;— выбирается настройкой. Смена модели не&nbsp;затрагивает отчёты и&nbsp;данные.</p></div>
+      <div class="card"><h3>Технологии</h3><p style="margin-top:10px" class="mono">Python · DuckDB · FastAPI</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- развёртывание -->
+<section id="razvertyvanie">
+  <div class="wrap">
+    <span class="num">07</span>
+    <h2>Развёртывание</h2>
+    <div class="spec">
+      <div><b>2</b><small>ядра процессора</small></div>
+      <div><b>4&nbsp;ГБ</b><small>оперативной памяти</small></div>
+      <div><b>40&nbsp;ГБ</b><small>диска под данные</small></div>
+      <div><b>~3&nbsp;с</b><small>отклик панелей</small></div>
+    </div>
+    <p style="margin-top:14px">Сервер на&nbsp;Ubuntu. Ежедневная сборка данных занимает от&nbsp;минуты до&nbsp;пяти в&nbsp;зависимости от&nbsp;размера сайта.</p>
+    <ol class="steps">
+      <li><b>Знакомство</b><p>Разбираем задачи команды и&nbsp;список сайтов, решаем, какие отчёты нужны в&nbsp;первую очередь.</p></li>
+      <li><b>Доступы</b><p>Вы выдаёте права на&nbsp;чтение в&nbsp;Search Console, Вебмастере и&nbsp;Метрике и&nbsp;ключ к&nbsp;выбранной модели ИИ.</p></li>
+      <li><b>Установка</b><p>Разворачиваем систему на&nbsp;вашем сервере или на&nbsp;арендованном, настраиваем вход по&nbsp;защищённому адресу.</p></li>
+      <li><b>Загрузка истории</b><p>Забираем всю доступную историю: в&nbsp;GSC это 16&nbsp;месяцев, в&nbsp;Метрике&nbsp;— с&nbsp;момента установки счётчика.</p></li>
+      <li><b>Настройка проекта</b><p>Подключаем сайты, цели Метрики, панели; проверяем числа сверкой с&nbsp;кабинетами источников.</p></li>
+      <li><b>Обучение</b><p>Показываем команде дашборд и&nbsp;чат, передаём инструкцию.</p></li>
+      <li class="last"><b>Поддержка и&nbsp;доработка</b><p>Следим за&nbsp;ежедневными выгрузками, обновляем систему и&nbsp;дорабатываем её по&nbsp;вашему запросу: новые отчёты, показатели, источники.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- связь -->
+<section id="svyaz" class="final">
+  <div class="wrap">
+    <span class="num">08</span>
+    <h2>Собрать аналитику вокруг решения?</h2>
+    <p class="lead" style="margin-top:14px">Покажу, как система ляжет на&nbsp;задачи вашей команды и&nbsp;данные конкретного сайта.</p>
+    <div class="btns">
+      <a class="btn main" href="https://bi-demo.tools01.ru/">Открыть демо ↗</a>
+      <a class="btn sec" href="#svyaz">Обсудить задачу ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap">Проект Галины Ершовой · BI-аналитика сайта</div></footer>
+
+</html>
