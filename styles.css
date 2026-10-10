@@ -20,3 +20,5 @@
 
 /* Variant navigation is available at palettes.html, not on public pages. */
 .preview{display:none!important}
+
+.project-knowledge .project-related{display:inline-block;margin-left:16px}
