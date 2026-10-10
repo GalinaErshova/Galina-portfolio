@@ -17,3 +17,5 @@
 
 /* Lighter canvas for the blue concept. */
 .blue{--bg:#fafbfd}
+
+.project-knowledge .project-related{display:inline-block;margin-left:16px}
