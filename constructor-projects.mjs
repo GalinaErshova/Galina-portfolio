@@ -1,5 +1,5 @@
 export function refineProjects(html) {
-  html = html.replace('<button class="text-link" data-project="analytics" type="button">Посмотреть разбор <span aria-hidden="true">↗</span></button>', '<a class="text-link" href="projects/bi-analytics/index.html">Посмотреть разбор <span aria-hidden="true">↗</span></a>').replaceAll('https://galaershova.ru/projects/coming-soon/?project=ai-bi-website', 'https://galaershova.ru/projects/bi-analytics/');
+  html = html.replace('<button class="text-link" data-project="analytics" type="button">Узнать подробнее <span aria-hidden="true">↗</span></button>', '<a class="text-link" href="projects/bi-analytics/index.html">Узнать подробнее <span aria-hidden="true">↗</span></a>').replaceAll('https://galaershova.ru/projects/coming-soon/?project=ai-bi-website', 'https://galaershova.ru/projects/bi-analytics/');
   html = html.replace('<link rel="stylesheet" href="constructor-motion.css">', '<link rel="stylesheet" href="constructor-motion.css"><link rel="stylesheet" href="constructor-projects.css">');
   html = html.replace(/(<div class="solution-list">)([\s\S]*?)(<\/div><\/section>)/, (_, open, rows, close) => open + rows
     .replace(/<a href="[^"]*">/g, '<article class="solution-row">')
