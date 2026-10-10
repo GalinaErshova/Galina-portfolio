@@ -31,3 +31,7 @@ node server.cjs
 ## BI-лендинг
 
 `projects/bi-analytics/` перенесён из `aigalaersh/bi-dashboard-landing`, SHA `aedfb5a173a51e53cc9e77fced6ea69d5c7a26bf`, без изменения оформления и содержания. Карточка BI ведёт на https://galaershova.ru/projects/bi-analytics/.
+
+## Лендинг рекомендательной системы
+
+`projects/recommendations/` перенесён из `aigalaersh/mediasphera-landing`, SHA `8b9fa1d8927edc060d4e8d868738927956f3e642`. Карточка «Рекомендательная система» ведёт на https://galaershova.ru/projects/recommendations/.
