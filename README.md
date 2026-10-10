@@ -34,4 +34,4 @@ node server.cjs
 
 ## Лендинг рекомендательной системы
 
-`projects/recommendations/` перенесён из `aigalaersh/mediasphera-landing`, SHA `8b9fa1d8927edc060d4e8d868738927956f3e642`. Карточка «Рекомендательная система» ведёт на https://galaershova.ru/projects/recommendations/.
+`projects/recommendations/` синхронизируется с портфельной веткой `codex/portfolio-presentation` отдельного форка `GalinaErshova/mediasphera-landing-portfolio` (коммит `06b1748`). Исходный репозиторий `aigalaersh/mediasphera-landing` остаётся без портфельных правок. Карточка «Рекомендательная система» ведёт на https://galaershova.ru/projects/recommendations/.
