@@ -7,48 +7,24 @@
 <meta name="description" content="Рекомендации «статья → статья» для медицинских журналов: шесть признаков, формула с весами, проверка цитатой и решение редактора. 1 102 статьи, 606 651 пара, 5 894 рекомендации.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
-  color-scheme:light;
-  --ground:#EEF1F0;--surface:#FFFFFF;--surface-2:#E4E9E7;
-  --ink:#141E1C;--ink-2:#3D4E4B;--muted:#6C7C79;
-  --line:#CDD6D3;--line-soft:#DEE5E3;
-  --accent:#0A5F55;--accent-soft:#D7E7E3;--accent-ink:#08453E;--on-accent:#F1F6F4;
-  --signal:#A9700F;--signal-soft:#F2E7CF;--alarm:#9C3A2A;--alarm-soft:#F3DEDA;
-  --chart-3:#3F6F97;
-  --shadow:0 1px 2px rgba(20,30,28,.06),0 12px 28px -18px rgba(20,30,28,.35);
-  --radius:3px;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    color-scheme:dark;
-    --ground:#0D1413;--surface:#141D1C;--surface-2:#1C2726;
-    --ink:#E7EDEB;--ink-2:#B7C4C1;--muted:#8A9996;
-    --line:#2A3937;--line-soft:#22302E;
-    --accent:#5CC8B2;--accent-soft:#17332E;--accent-ink:#8FDCCB;--on-accent:#0B1211;
-    --signal:#D9A648;--signal-soft:#33290F;--alarm:#DE8674;--alarm-soft:#3A1E19;
-    --chart-3:#7FA9CE;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 32px -20px rgba(0,0,0,.8);
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme:dark;
-  --ground:#0D1413;--surface:#141D1C;--surface-2:#1C2726;
-  --ink:#E7EDEB;--ink-2:#B7C4C1;--muted:#8A9996;
-  --line:#2A3937;--line-soft:#22302E;
-  --accent:#5CC8B2;--accent-soft:#17332E;--accent-ink:#8FDCCB;--on-accent:#0B1211;
-  --signal:#D9A648;--signal-soft:#33290F;--alarm:#DE8674;--alarm-soft:#3A1E19;
-  --chart-3:#7FA9CE;
-  --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 32px -20px rgba(0,0,0,.8);
+ color-scheme:light;
+ --ground:#FFFFFF;--surface:#FFFFFF;--surface-2:#F3F5FA;
+ --ink:#24282E;--ink-2:#34415B;--muted:#596579;
+ --line:#E6E9F0;--line-soft:#E6E9F0;
+ --accent:#1A2D5A;--accent-soft:#E8EDF7;--accent-ink:#1A2D5A;--on-accent:#FFFFFF;
+ --signal:#8A5A00;--signal-soft:#F2E7CF;--alarm:#9C3A2A;--alarm-soft:#F3DEDA;
+ --chart-3:#4267A6;--shadow:0 1px 3px rgba(26,45,90,.08);--radius:6px;
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{margin:0;background:var(--ground);color:var(--ink);
-  font-family:"Golos Text","Segoe UI",system-ui,sans-serif;font-size:16px;line-height:1.62;
+  font-family:Inter,"Segoe UI",system-ui,sans-serif;font-size:16px;line-height:1.62;
   -webkit-font-smoothing:antialiased}
 .wrap{max-width:1080px;margin:0 auto;padding-inline:max(16px,3vw)}
-h1,h2,h3{font-family:Literata,"Times New Roman",Georgia,serif;text-wrap:balance;margin:0}
+h1,h2,h3{font-family:Inter,"Segoe UI",system-ui,sans-serif;text-wrap:balance;margin:0}
 h1{font-size:clamp(32px,5vw,54px);line-height:1.08;font-weight:700;letter-spacing:-.015em}
 h2{font-size:clamp(24px,3vw,33px);line-height:1.18;font-weight:700;letter-spacing:-.01em}
 h3{font-size:19px;line-height:1.3;font-weight:600}
@@ -106,7 +82,7 @@ section{padding-block:64px}
 @media(max-width:760px){.board{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px}
 .tile .k{font-size:12.5px;color:var(--muted);display:block;line-height:1.35}
-.tile .v{font-family:Literata,Georgia,serif;font-size:30px;font-weight:600;letter-spacing:-.01em;display:block;margin-top:4px;font-variant-numeric:tabular-nums}
+.tile .v{font-family:Inter,"Segoe UI",system-ui,sans-serif;font-size:30px;font-weight:600;letter-spacing:-.01em;display:block;margin-top:4px;font-variant-numeric:tabular-nums}
 .tile .d{font-size:12.5px;color:var(--ink-2);display:block;margin-top:2px;line-height:1.4}
 
 /* карточки */
