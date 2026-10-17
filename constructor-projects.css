@@ -66,3 +66,5 @@ body.clay[data-palette="navy"] .contact{background:#dce5ed}
 .clay .project .project-flow .flow-node:last-child{background:#f2f2e9;color:var(--ink);font-weight:600;border-left:3px solid var(--accent)}
 .clay .project .project-copy>.text-link{background:var(--accent);color:#fff;padding:13px 20px;border-radius:6px;min-height:48px;justify-content:center;text-decoration:none}
 .clay .project .project-copy>.text-link:hover{background:color-mix(in srgb,var(--accent),#20242c 15%);color:#fff}
+.clay .hero-copy>.eyebrow,.clay .pm-heading .eyebrow{font-size:12px}
+.clay .project-bugflow .demo-node{text-decoration:none}
