@@ -63,3 +63,6 @@ body.clay[data-palette="navy"] .contact{background:#dce5ed}
 @media(min-width:851px){.clay .solutions>.section-intro{display:flex;flex-direction:column;padding-bottom:24px}.clay .solutions>.section-intro .solutions-note{margin-top:auto;padding-top:24px}}
 .clay .project .project-copy>p{font-size:16px;line-height:1.65}.clay .project .project-meta{font-size:13px}.clay .project .project-copy>.text-link{font-size:17px}.clay .project .project-copy h3{font-size:29px}.clay .project:first-child .project-copy h3{font-size:39px}
 @media(max-width:540px){.clay .project .project-copy h3,.clay .project:first-child .project-copy h3{font-size:28px}}
+.clay .project .project-flow .flow-node:last-child{background:#f2f2e9;color:var(--ink);font-weight:600;border-left:3px solid var(--accent)}
+.clay .project .project-copy>.text-link{background:var(--accent);color:#fff;padding:13px 20px;border-radius:6px;min-height:48px;justify-content:center;text-decoration:none}
+.clay .project .project-copy>.text-link:hover{background:color-mix(in srgb,var(--accent),#20242c 15%);color:#fff}
