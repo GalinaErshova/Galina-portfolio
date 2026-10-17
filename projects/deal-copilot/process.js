@@ -13,7 +13,7 @@ function scheduleStep() {
     currentStep = (currentStep + 1) % processSteps.length;
     processSteps[currentStep].classList.add('is-active');
     scheduleStep();
-  }, 6000);
+  }, 2000);
 }
 
 new IntersectionObserver(entries => {

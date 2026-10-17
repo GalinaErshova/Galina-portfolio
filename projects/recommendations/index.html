@@ -66,8 +66,10 @@ code{font-size:.88em;background:var(--surface-2);padding:1px 5px;border-radius:2
 .top{border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--ground) 90%,transparent);
   position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:blur(8px)}
 .top-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:10px;font-weight:600;text-decoration:none;color:var(--ink)}
-.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+.brand{display:flex;align-items:center;gap:11px;font-size:13px;font-weight:700;line-height:1.15;text-decoration:none;color:var(--ink)}
+.brand small{display:block;margin-top:3px;color:var(--muted);font-size:10px;font-weight:400}
+.brand .brand-mark{display:block;width:39px;color:var(--ink);font-size:39px;font-weight:700;letter-spacing:-6px;line-height:1}
+.brand .brand-mark span{color:var(--accent)}
 .tabs{display:flex;gap:4px;flex-wrap:wrap}
 .tabs a{color:var(--ink-2);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:100px;border:1px solid transparent}
 .tabs a:hover{color:var(--accent)}
@@ -172,7 +174,7 @@ footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);fo
 
 <header class="top">
   <div class="wrap top-in">
-    <a class="brand" href="#overview"><span class="dot"></span>Объяснимые рекомендации</a>
+    <a class="brand" href="https://galaershova.ru/" aria-label="На главную портфолио Галины Ершовой"><span class="brand-mark" aria-hidden="true">г<span>.</span></span><span>Галина Ершова<small>Разработчик-консультант</small></span></a>
     <nav class="tabs" aria-label="Страницы">
       <a href="#overview" data-page="overview">Обзор</a>
       <a href="#how" data-page="how">Как подбираются рекомендации</a>

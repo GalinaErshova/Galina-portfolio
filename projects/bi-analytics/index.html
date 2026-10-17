@@ -44,6 +44,10 @@ a{color:var(--accent)}
 .top nav{display:flex;gap:18px;font-size:14px}
 .top nav a{color:var(--ink-2);text-decoration:none}
 .top nav a:hover{color:var(--accent)}
+.portfolio-brand{display:flex;align-items:center;gap:11px;flex-shrink:0;color:var(--ink);text-decoration:none;font-size:13px;font-weight:700;line-height:1.15}
+.portfolio-brand small{display:block;margin-top:3px;color:var(--muted);font-size:10px;font-weight:400}
+.portfolio-brand .brand-mark{display:block;width:39px;color:var(--ink);font-size:39px;font-weight:700;letter-spacing:-6px;line-height:1}
+.portfolio-brand .brand-mark span{color:var(--accent)}
 
 section{padding-block:clamp(56px,8vw,96px);border-bottom:1px solid var(--line-soft)}
 .lead{font-size:clamp(17px,1.6vw,19px);max-width:62ch}
@@ -212,7 +216,7 @@ footer{color:var(--muted)}
 </style>
 
 <header class="top"><div class="wrap">
-  <b>BI · WEB ANALYTICS</b>
+  <a class="portfolio-brand" href="https://galaershova.ru/" aria-label="На главную портфолио Галины Ершовой"><span class="brand-mark" aria-hidden="true">г<span>.</span></span><span>Галина Ершова<small>Разработчик-консультант</small></span></a>
   <nav>
     <a href="#istochniki">Источники</a><a href="#komu">Кому подходит</a><a href="#izmeneniya">Изменения</a>
     <a href="#chat">Чат</a><a href="#otchety">Отчёты</a><a href="#ustroystvo">Технические детали</a>
