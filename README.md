@@ -4,7 +4,7 @@
 
 Кейс доступен по маршруту `/projects/deal-copilot/`. Из блока «Корпоративная база знаний» на активной главной `index.html` и в варианте `constructor.html` ведёт отдельная ссылка «Кейс Deal Copilot»; карточка самого проекта в `constructor.html` тоже ведёт на эту страницу. Исходник лендинга — `projects/deal-copilot/index.html`. При обновлении карточек сохраняйте те же адреса в обоих HTML-файлах и `constructor-projects.mjs`.
 
-Светлая версия использует сдержанный синий акцент. Изображения в `projects/deal-copilot/images/` — скриншоты локального демостенда со светло-зелёной темой и условными данными; прежняя тёмная версия страницы сохранена в `previous-backgrounds/deal-copilot-dark.html`, прежние скриншоты — в `previous-backgrounds/deal-copilot-dark-images/`.
+Светлая версия использует лесной зелёный акцент приложения. Изображения в `projects/deal-copilot/images/` — скриншоты локального демостенда со светло-зелёной темой и условными данными. Прежние варианты страницы сохранены в `previous-backgrounds/deal-copilot-blue.html` и `previous-backgrounds/deal-copilot-dark.html`; старые скриншоты — в `previous-backgrounds/deal-copilot-dark-images/`.
 
 Статические прототипы главной страницы. Текущий согласованный вариант — `constructor.html`: светлый фон, терракотовый акцент, проекты и интерактивные этапы работы.
 
