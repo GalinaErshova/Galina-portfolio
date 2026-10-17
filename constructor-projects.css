@@ -61,3 +61,5 @@ body.clay[data-palette="navy"] .contact{background:#dce5ed}
 
 .clay .section-intro .solutions-note{margin:24px 0 0;font-size:14px;line-height:1.7;color:var(--muted)}
 @media(min-width:851px){.clay .solutions>.section-intro{display:flex;flex-direction:column;padding-bottom:24px}.clay .solutions>.section-intro .solutions-note{margin-top:auto;padding-top:24px}}
+.clay .project .project-copy>p{font-size:16px;line-height:1.65}.clay .project .project-meta{font-size:13px}.clay .project .project-copy>.text-link{font-size:17px}.clay .project .project-copy h3{font-size:29px}.clay .project:first-child .project-copy h3{font-size:39px}
+@media(max-width:540px){.clay .project .project-copy h3,.clay .project:first-child .project-copy h3{font-size:28px}}
