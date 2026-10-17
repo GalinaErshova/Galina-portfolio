@@ -6,24 +6,15 @@
 <meta name="description" content="Google Search Console, Яндекс Вебмастер и Яндекс Метрика в одном отчёте. Чат отвечает на вопросы числами из ваших данных.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
 <style>
 :root{
-  --ground:#EEF1F0;--surface:#FFFFFF;--surface-2:#E4E9E7;--ink:#141E1C;--ink-2:#3D4E4B;--muted:#6C7C79;
-  --line:#CDD6D3;--line-soft:#DEE5E3;--accent:#0A5F55;--accent-soft:#D7E7E3;--accent-ink:#08453E;--on-accent:#F1F6F4;
-  --signal:#A9700F;--signal-soft:#F2E7CF;--alarm:#9C3A2A;--c1:#0A5F55;--c2:#A9700F;--c3:#3F6F97;
-  --shadow:0 1px 2px rgba(20,30,28,.06),0 12px 28px -18px rgba(20,30,28,.35);--r:4px;
+  color-scheme:light;
+  --ground:#f0f0ec;--surface:#f8f8f3;--surface-2:#e5e7df;--ink:#252522;--ink-2:#64645e;--muted:#64645e;
+  --line:#d2d2c9;--line-soft:#d2d2c9;--accent:#b44730;--accent-strong:#943924;--accent-soft:#ede3dc;--accent-ink:#943924;--on-accent:#fff;
+  --signal:#8a651f;--signal-soft:#f0e8d5;--alarm:#9c3a2a;--c1:#b44730;--c2:#8a651f;--c3:#41698a;
+  --shadow:none;--r:6px;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;
-  --ground:#0D1413;--surface:#141D1C;--surface-2:#1C2726;--ink:#E7EDEB;--ink-2:#B7C4C1;--muted:#8A9996;
-  --line:#2A3937;--line-soft:#22302E;--accent:#5CC8B2;--accent-soft:#17332E;--accent-ink:#8FDCCB;--on-accent:#0B1211;
-  --signal:#D9A648;--signal-soft:#33290F;--alarm:#DE8674;--c1:#5CC8B2;--c2:#D9A648;--c3:#7FA9CE;
-  --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 32px -20px rgba(0,0,0,.8)}}
-:root[data-theme="dark"]{color-scheme:dark;
-  --ground:#0D1413;--surface:#141D1C;--surface-2:#1C2726;--ink:#E7EDEB;--ink-2:#B7C4C1;--muted:#8A9996;
-  --line:#2A3937;--line-soft:#22302E;--accent:#5CC8B2;--accent-soft:#17332E;--accent-ink:#8FDCCB;--on-accent:#0B1211;
-  --signal:#D9A648;--signal-soft:#33290F;--alarm:#DE8674;--c1:#5CC8B2;--c2:#D9A648;--c3:#7FA9CE;
-  --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 32px -20px rgba(0,0,0,.8)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--ground);color:var(--ink);font-family:"Golos Text","Segoe UI",system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1100px;margin:0 auto;padding-inline:clamp(16px,4vw,28px)}
@@ -44,6 +35,10 @@ a{color:var(--accent)}
 .top nav{display:flex;gap:18px;font-size:14px}
 .top nav a{color:var(--ink-2);text-decoration:none}
 .top nav a:hover{color:var(--accent)}
+.portfolio-brand{display:flex;align-items:center;gap:11px;flex-shrink:0;color:var(--ink);text-decoration:none;font-size:13px;font-weight:700;line-height:1.15}
+.portfolio-brand small{display:block;margin-top:3px;color:var(--muted);font-size:10px;font-weight:400}
+.portfolio-brand .brand-mark{display:block;width:39px;color:var(--ink);font-size:39px;font-weight:700;letter-spacing:-6px;line-height:1}
+.portfolio-brand .brand-mark span{color:var(--accent)}
 
 section{padding-block:clamp(56px,8vw,96px);border-bottom:1px solid var(--line-soft)}
 .lead{font-size:clamp(17px,1.6vw,19px);max-width:62ch}
@@ -131,59 +126,51 @@ footer{padding-block:28px;font-size:13px;color:var(--muted)}
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:28px}
 .final{text-align:center}.final .btns{justify-content:center}.final .lead{margin-inline:auto}
 
-/* Система personal-site: navy, холодный голубой и техническая типографика */
-:root{
-  color-scheme:dark;
-  --ground:#020814;--surface:#0A192B;--surface-2:#071425;--ink:#F1F7FB;--ink-2:#C5D1DA;--muted:#9AACBA;
-  --line:rgb(190 219 232 / 16%);--line-soft:rgb(190 219 232 / 10%);
-  --accent:#72CDE9;--accent-soft:rgb(114 205 233 / 12%);--accent-ink:#D8F5FF;--on-accent:#020814;
-  --signal:#E3B969;--signal-soft:rgb(227 185 105 / 12%);--alarm:#F08C84;
-  --c1:#72CDE9;--c2:#E3B969;--c3:#9DE7FF;--shadow:0 20px 56px -34px rgb(0 0 0 / 78%);--r:10px;
-}
+/* Светлая палитра главной страницы: тёплый фон и терракотовый акцент. */
 html{scroll-behavior:smooth;background:var(--ground)}
 body{
   min-width:320px;
   color:var(--ink);
-  background:radial-gradient(ellipse at 78% 4%,rgb(24 91 128 / 14%),transparent 34rem),var(--ground);
-  font-family:Geist,"Segoe UI Variable","Segoe UI",Arial,sans-serif;
+  background:var(--ground);
+  font-family:"Golos Text",Arial,sans-serif;
 }
 .wrap{max-width:1440px;padding-inline:clamp(20px,5vw,80px)}
-h1,h2,h3{font-family:Geist,"Segoe UI Variable","Segoe UI",Arial,sans-serif;letter-spacing:-.045em}
+h1,h2,h3{font-family:"Golos Text",Arial,sans-serif;letter-spacing:-.045em}
 h1{max-width:900px;font-size:clamp(40px,5.4vw,68px);line-height:1.02;font-weight:600}
 h2{font-size:clamp(32px,4vw,54px);line-height:1.06;font-weight:570}
 h3{font-size:21px;line-height:1.2;font-weight:600}
 .eyebrow,.num,.mono,.top b,.card dt,.kpi b,.kpi em,.mock-bar span,.flow .arr,.tbl,.steps li::before,.spec b{font-family:"Geist Mono",Consolas,monospace}
-.eyebrow{color:var(--accent-strong,#9DE7FF);font-size:11px;letter-spacing:.11em}
+.eyebrow{color:var(--accent-strong);font-size:11px;letter-spacing:.11em}
 .num{color:var(--accent);letter-spacing:.1em}
-.top{background:rgb(2 8 20 / 84%);border-color:var(--line);backdrop-filter:blur(18px)}
+.top{background:color-mix(in srgb,var(--ground) 94%,transparent);border-color:var(--line);backdrop-filter:blur(18px)}
 .top .wrap{height:72px}
-.top b{color:var(--accent-strong,#9DE7FF);font-size:11px}
+.top b{color:var(--accent-strong);font-size:11px}
 .top nav{gap:clamp(12px,1.8vw,26px)}
 .top nav a{color:var(--ink-2);transition:color 180ms ease}
 section{padding-block:clamp(72px,9vw,124px);border-color:var(--line-soft);scroll-margin-top:72px}
 .lead{max-width:66ch;color:var(--ink-2)}
 p{color:var(--ink-2)}
 a{color:var(--accent)}
-.btn{min-height:46px;padding:12px 20px;border-radius:999px;font-weight:600;transition:transform 180ms ease,border-color 180ms ease,background-color 180ms ease}
+.btn{min-height:46px;padding:12px 20px;border-radius:var(--r);font-weight:600;transition:transform 180ms ease,border-color 180ms ease,background-color 180ms ease}
 .btn:hover{transform:translateY(-2px)}
 .btn.main{border-color:var(--accent);color:var(--on-accent);background:var(--accent)}
-.btn.main:hover{background:var(--accent-strong,#9DE7FF)}
-.btn.sec{border-color:var(--line-strong,rgb(190 219 232 / 28%));color:var(--ink);background:rgb(7 20 37 / 42%)}
-.btn.sec:hover{border-color:var(--accent);color:var(--accent-strong,#9DE7FF)}
-.card,.steps li,.spec div,.plans div,.flow div{border-color:var(--line);background:linear-gradient(145deg,rgb(10 25 43 / 94%),rgb(6 17 31 / 96%));box-shadow:var(--shadow)}
+.btn.main:hover{background:var(--accent-strong)}
+.btn.sec{border-color:var(--line);color:var(--ink);background:transparent}
+.btn.sec:hover{border-color:var(--accent);color:var(--accent-strong)}
+.card,.steps li,.spec div,.plans div,.flow div{border-color:var(--line);background:var(--surface);box-shadow:var(--shadow)}
 .card{padding:clamp(22px,3vw,30px)}
 .card .ico{border-radius:9px}
-.chip{border-color:var(--line);border-radius:999px;color:var(--ink-2);background:rgb(10 25 43 / 78%)}
-.mock,.shot{border-color:var(--line);border-radius:12px;box-shadow:0 24px 64px -38px rgb(0 0 0 / 88%)}
+.chip{border-color:var(--line);border-radius:999px;color:var(--ink-2);background:var(--surface)}
+.mock,.shot{border-color:var(--line);border-radius:12px;box-shadow:var(--shadow)}
 .mock-bar{background:var(--surface-2);border-color:var(--line)}
 .mock-cap{color:var(--muted)}
-.steps li.last,.flow .hl{border-color:var(--accent);background:linear-gradient(135deg,rgb(114 205 233 / 13%),rgb(10 25 43 / 94%))}
-.steps li::before{border-radius:50%;background:rgb(114 205 233 / 14%);color:var(--accent-strong,#9DE7FF)}
+.steps li.last,.flow .hl{border-color:var(--accent);background:var(--accent-soft)}
+.steps li::before{border-radius:50%;background:var(--accent-soft);color:var(--accent-strong)}
 .steps li.last::before,.minibtn.f{background:var(--accent);color:var(--on-accent)}
 .plans div{border-style:solid}
 footer{color:var(--muted)}
-::selection{color:var(--ground);background:var(--accent-strong,#9DE7FF)}
-:focus-visible{outline:2px solid var(--accent-strong,#9DE7FF);outline-offset:4px}
+::selection{color:var(--ground);background:var(--accent-strong)}
+:focus-visible{outline:2px solid var(--accent-strong);outline-offset:4px}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
@@ -212,7 +199,7 @@ footer{color:var(--muted)}
 </style>
 
 <header class="top"><div class="wrap">
-  <b>BI · WEB ANALYTICS</b>
+  <a class="portfolio-brand" href="https://galaershova.ru/" aria-label="На главную портфолио Галины Ершовой"><span class="brand-mark" aria-hidden="true">г<span>.</span></span><span>Галина Ершова<small>Разработчик-консультант</small></span></a>
   <nav>
     <a href="#istochniki">Источники</a><a href="#komu">Кому подходит</a><a href="#izmeneniya">Изменения</a>
     <a href="#chat">Чат</a><a href="#otchety">Отчёты</a><a href="#ustroystvo">Технические детали</a>
