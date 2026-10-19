@@ -4,7 +4,7 @@ const processData = [
   ['02 / ПРОВЕРИТЬ','Проверяем идею на практике','Собираю прототип или аналитический контур и испытываю ключевые сценарии на доступных данных.','Рабочая проверка и выводы по гипотезе'],
   ['03 / ВСТРОИТЬ','Соединяем решение с работой команды','Продумываю интеграции, роли, обработку ошибок и понятный путь пользователя.','Система в контексте процесса'],
   ['04 / ПОДТВЕРДИТЬ','Фиксируем качество и ограничения','Проверяем поведение на реальных примерах, документируем границы решения и согласуем запуск.','Результаты проверки и решение о запуске'],
-  ['05 / СОПРОВОЖДАТЬ','Улучшаем после запуска','Наблюдаем за работой решения, разбираем ошибки и обратную связь. Приоритеты изменений определяем по пользе для команды.','План улучшений и обновлённое решение']
+  ['05 / СОПРОВОЖДАТЬ','Не бросаем после запуска','Наблюдаем за работой решения, разбираем ошибки и обратную связь. Приоритеты изменений определяем по пользе для команды.','План улучшений и обновлённое решение']
 ];
 const processText = text => text.replace(/(^|\s)([вксоуаиВКСОУАИЯя]) /g, '$1$2\u00a0');
 let processIndex = 0;
@@ -23,14 +23,12 @@ function selectProcessStep(index, automatic = false) {
   });
 }
 const processMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const autoplayButton = processRoot.querySelector('.pm-autoplay');
 let processTimer;
 let processVisible = false;
-let processPaused = false;
 let processIdleUntil = 0;
 function scheduleProcess() {
   clearTimeout(processTimer);
-  if (!processVisible || document.hidden || processPaused || processMotion.matches || document.body.classList.contains('motion-paused')) return;
+  if (!processVisible || document.hidden || processMotion.matches || document.body.classList.contains('motion-paused')) return;
   processTimer = setTimeout(() => {
     selectProcessStep((processIndex + 1) % processData.length, true);
     scheduleProcess();
@@ -46,12 +44,6 @@ processRoot.querySelectorAll('.pm-step').forEach(button => button.addEventListen
 }));
 processRoot.addEventListener('pointerdown', delayProcess);
 processRoot.addEventListener('keydown', delayProcess);
-autoplayButton.addEventListener('click', () => {
-  processPaused = !processPaused;
-  autoplayButton.setAttribute('aria-pressed', String(processPaused));
-  autoplayButton.textContent = processPaused ? 'Продолжить смену этапов' : 'Приостановить смену этапов';
-  scheduleProcess();
-});
 new IntersectionObserver(entries => {
   processVisible = entries[0].isIntersecting;
   scheduleProcess();

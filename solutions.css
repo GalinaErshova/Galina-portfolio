@@ -1,0 +1,12 @@
+.clay .solutions-interactive .solution-row{animation:none;cursor:pointer;transition:background .2s,box-shadow .2s}
+.clay .solutions-interactive .solution-row.is-active{background:color-mix(in srgb,var(--accent) 8%,transparent);box-shadow:inset 2px 0 var(--accent)}
+.clay .solutions-interactive .solution-row:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.clay .solution-detail{margin-top:32px;min-height:300px;max-width:460px}
+.clay .solution-detail-label{font-size:10px;letter-spacing:.07em;color:var(--accent)}
+.clay .solution-detail h3{font-size:23px;line-height:1.25;margin-top:12px}
+.clay .section-intro .solution-detail p{font-size:14px;line-height:1.7;margin-top:14px}
+.clay .solution-detail-result strong{font-weight:500;color:var(--ink)}
+.clay .solutions .section-intro .solutions-note{margin-top:14px;padding-top:0;font-size:13px}
+@media(max-width:850px){.clay .solution-detail{min-height:270px;max-width:620px}.clay .solutions{gap:28px}}
+@media(max-width:540px){.clay .solution-detail{min-height:330px}.clay .solution-detail h3{font-size:22px}}
+@media(prefers-reduced-motion:reduce){.clay .solutions-interactive .solution-row{transition:none}}
