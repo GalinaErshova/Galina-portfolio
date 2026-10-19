@@ -5,7 +5,6 @@
   const list = section.querySelector('.solution-list');
   const rows = [...list.querySelectorAll('.solution-row')];
   const detail = section.querySelector('.solution-detail');
-  const pause = section.querySelector('.solution-pause');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const descriptions = [
     ['ПРОЦЕССЫ И СИСТЕМЫ', 'Убрать ручную передачу данных', 'Разбираю, как информация проходит между учётной системой, таблицами и сервисами: где её вводят повторно, что теряется и какие действия задерживают работу. На этой основе определяем, какие обмены и операции стоит автоматизировать.', 'выберем один процесс и опишем путь данных, участников и точки проверки.'],
@@ -14,7 +13,6 @@
     ['РАБОЧИЙ ИНСТРУМЕНТ', 'Собрать сервис под ваш процесс', 'Когда готовые продукты не закрывают задачу, проектирую отдельный инструмент: с нужными действиями, правилами расчёта и связями с существующими системами. AI добавляем там, где его пользу можно проверить на конкретном сценарии.', 'опишем основной рабочий сценарий и проверим его в небольшом прототипе.'],
   ];
   let active = 0;
-  let paused = false;
   let visible = false;
   let timer;
   const interval = Number(list.dataset.interval);
@@ -35,7 +33,7 @@
   }
   function schedule() {
     clearTimeout(timer);
-    if (paused || reduced.matches || document.hidden || !visible) return;
+    if (reduced.matches || document.hidden || !visible) return;
     timer = setTimeout(() => {
       select((active + 1) % rows.length);
       schedule();
@@ -53,18 +51,7 @@
       }
     });
   });
-  pause.hidden = false;
-  pause.addEventListener('click', () => {
-    paused = !paused;
-    pause.setAttribute('aria-pressed', String(paused));
-    pause.textContent = paused ? 'Продолжить смену' : 'Приостановить смену';
-    schedule();
-  });
-  function syncMotion() {
-    pause.hidden = reduced.matches;
-    schedule();
-  }
-  reduced.addEventListener('change', syncMotion);
+  reduced.addEventListener('change', schedule);
   document.addEventListener('visibilitychange', schedule);
   new IntersectionObserver(entries => {
     visible = entries[0].isIntersecting;
@@ -72,5 +59,5 @@
   }, { threshold: 0.15 }).observe(section);
   section.classList.add('solutions-interactive');
   select(0);
-  syncMotion();
+  schedule();
 })();
