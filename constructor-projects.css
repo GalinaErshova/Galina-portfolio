@@ -22,6 +22,9 @@
 .clay .project{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .clay .project .project-art{border-radius:0}
 .clay .project .project-copy{padding:22px 24px 26px}
+/* Keep the breathing space around the first illustration in its own green tone. */
+.clay .project-knowledge{background:#d8dfd1}
+.clay .project-knowledge .project-copy{background:var(--surface)}
 .clay .project-meta{font-size:12px}
 .clay .project-copy>.text-link{font-size:16px;min-height:44px}
 .clay .contact{padding-block:70px}
