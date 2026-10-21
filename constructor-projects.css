@@ -18,16 +18,18 @@
 @media(max-width:540px){.clay .solution-row{gap:13px;padding:21px 12px}.clay .project-demo{margin-left:16px}}
 @media(prefers-reduced-motion:reduce){.clay .solution-row{animation:none}}
 
-/* Keep the BI illustration and copy visually together. */
-.clay .project-analytics{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.clay .project-analytics .project-art{border-radius:0}
-.clay .project-analytics .project-copy{padding:22px 24px 26px}
+/* Use the BI card as the shared project-card background reference. */
+.clay .project{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.clay .project .project-art{border-radius:0}
+.clay .project .project-copy{padding:22px 24px 26px}
 .clay .project-meta{font-size:12px}
 .clay .project-copy>.text-link{font-size:16px;min-height:44px}
 .clay .contact{padding-block:70px}
 .clay .footer{justify-content:center;text-align:center}
 .clay .footer span{width:100%}
-@media(max-width:600px){.clay .contact{padding-block:48px}.clay .project-analytics .project-copy{padding:20px}}
+@media(max-width:600px){.clay .contact{padding-block:48px}.clay .project .project-copy{padding:20px}}
+
+@media(max-width:850px){.clay .project-title-break{display:none}}
 
 /* URL-selected palettes retain the same content and layout. */
 body.clay[data-palette="blue"]{--bg:#f2f5fc;--ink:#20283d;--muted:#5d6880;--accent:#3455db;--line:#cbd5ec;--surface:#f9fbff;--tint:#e5ebf8}
