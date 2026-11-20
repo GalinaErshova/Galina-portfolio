@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap');
+@import url('../../assets/fonts/fonts.css');
 
 :root{color-scheme:light;--bg:#eeefee;--paper:#fff;--ink:#2d2f2e;--muted:#5e6361;--accent:#3c6d5c;--accent-deep:#275143;--line:#c9cccb;--tint:#e5eee9}
 *{box-sizing:border-box}
