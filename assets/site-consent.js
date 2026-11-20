@@ -5,7 +5,7 @@
 
   const COUNTER = 114414864;
   const KEY = 'galaershova-consent';
-  const VERSION = 1;
+  const VERSION = 2;
   const MAX_AGE = 180 * 24 * 60 * 60 * 1000;
   let current = null;
   let started = false;
@@ -76,36 +76,30 @@
   const wrapper = document.createElement('div');
   wrapper.className = 'gala-consent';
   wrapper.innerHTML = `
-    <button class="gala-consent__settings" type="button" aria-controls="gala-consent-panel" aria-expanded="false">Настройки cookie</button>
+    <button class="gala-consent__settings" type="button" aria-controls="gala-consent-panel" aria-expanded="false">Настройки аналитики</button>
     <section class="gala-consent__panel" id="gala-consent-panel" role="dialog" aria-labelledby="gala-consent-title" aria-describedby="gala-consent-description" hidden>
-      <button class="gala-consent__close" type="button" aria-label="Закрыть окно согласия">×</button>
-      <h2 id="gala-consent-title">Согласия</h2>
-      <p id="gala-consent-description">Вы можете пользоваться сайтом без аналитики. Чтобы включить её, отметьте оба пункта.</p>
-      <label class="gala-consent__option"><input id="gala-consent-analytics" type="checkbox"><span>Согласен(на) на использование аналитических cookie, сбор статистики посещений и запись действий на сайте с помощью Яндекс Метрики</span></label>
-      <label class="gala-consent__option"><input id="gala-consent-personal" type="checkbox"><span>Согласен(на) на обработку персональных данных для аналитики в соответствии с <a href="/policy" target="_blank" rel="noopener">Политикой обработки персональных данных</a></span></label>
-      <div class="gala-consent__actions"><button class="gala-consent__accept" type="button" disabled>Принять</button><span class="gala-consent__hint" aria-live="polite">Отметьте оба пункта</span></div>
-      <button class="gala-consent__decline" type="button">Продолжить без аналитики</button>
+      <button class="gala-consent__close" type="button" aria-label="Закрыть без аналитики">×</button>
+      <h2 id="gala-consent-title">Аналитика сайта</h2>
+      <p id="gala-consent-description">Яндекс Метрика собирает статистику посещений и записывает действия на страницах. Вы можете пользоваться сайтом без аналитики.</p>
+      <p class="gala-consent__terms">Нажимая «Разрешить аналитику», вы соглашаетесь на аналитические cookie и обработку данных для этих целей. <a href="/policy" target="_blank" rel="noopener">Политика обработки данных</a></p>
+      <div class="gala-consent__actions"><button class="gala-consent__accept" type="button">Разрешить аналитику</button><button class="gala-consent__decline" type="button">Продолжить без аналитики</button></div>
     </section>`;
   document.body.append(wrapper);
   const panel = wrapper.querySelector('.gala-consent__panel');
   const settings = wrapper.querySelector('.gala-consent__settings');
-  const analytics = wrapper.querySelector('#gala-consent-analytics');
-  const personal = wrapper.querySelector('#gala-consent-personal');
   const accept = wrapper.querySelector('.gala-consent__accept');
   const decline = wrapper.querySelector('.gala-consent__decline');
-  const hint = wrapper.querySelector('.gala-consent__hint');
-
-  function refresh() {
-    accept.disabled = !(analytics.checked && personal.checked);
-    hint.textContent = accept.disabled ? 'Отметьте оба пункта' : 'Можно принять';
-    decline.textContent = current && current.analytics ? 'Отключить аналитику' : 'Продолжить без аналитики';
+  let footer = document.querySelector('footer');
+  if (!footer) {
+    footer = document.createElement('footer');
+    document.body.append(footer);
   }
+  footer.classList.add('gala-consent-footer');
+  footer.append(settings);
 
   function show(manual = true) {
     previousFocus = manual ? document.activeElement : null;
-    analytics.checked = Boolean(current && current.analytics);
-    personal.checked = Boolean(current && current.personalData);
-    refresh();
+    decline.textContent = current && current.analytics ? 'Отключить аналитику' : 'Продолжить без аналитики';
     panel.hidden = false;
     settings.setAttribute('aria-expanded', 'true');
     if (manual) wrapper.querySelector('.gala-consent__close').focus();
@@ -115,7 +109,7 @@
     panel.hidden = true;
     settings.setAttribute('aria-expanded', 'false');
     if (panel.contains(document.activeElement)) {
-      (previousFocus && previousFocus.isConnected ? previousFocus : settings).focus();
+      (previousFocus && previousFocus.isConnected ? previousFocus : settings).focus({ preventScroll: true });
     }
   }
 
@@ -127,11 +121,9 @@
   }
 
   settings.addEventListener('click', () => show());
-  analytics.addEventListener('change', refresh);
-  personal.addEventListener('change', refresh);
-  accept.addEventListener('click', () => { if (analytics.checked && personal.checked) save(true); });
+  accept.addEventListener('click', () => save(true));
   decline.addEventListener('click', () => save(false));
-  const dismiss = () => { if (!current) save(false); else hide(); };
+  const dismiss = () => save(false);
   wrapper.querySelector('.gala-consent__close').addEventListener('click', dismiss);
   panel.addEventListener('keydown', event => {
     if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); dismiss(); }
