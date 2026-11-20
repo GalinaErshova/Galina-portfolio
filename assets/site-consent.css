@@ -6,7 +6,7 @@
 .clay footer.gala-consent-footer>span,footer.gala-consent-footer>span{width:auto}
 footer.gala-consent-footer:not(.footer){padding:22px 20px;font-size:12px;color:var(--muted,#64645e)}
 footer.gala-consent-footer .gala-consent__settings{display:inline-block;position:static;min-height:44px;padding:10px 0;border:0;border-radius:0;background:transparent;color:inherit;font:inherit;line-height:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;box-shadow:none;white-space:nowrap}
-.gala-consent__panel{position:fixed;left:18px;bottom:18px;z-index:10001;width:min(360px,calc(100vw - 36px));max-height:calc(100dvh - 36px);overflow-y:auto;overscroll-behavior:contain;padding:20px 18px 18px;border:1px solid #49453d;border-radius:16px;background:var(--gc-bg);box-shadow:0 12px 44px #0003}
+.gala-consent__panel{position:fixed;left:18px;bottom:18px;z-index:10001;width:min(360px,calc(100% - 36px));max-height:calc(100dvh - 36px);overflow-y:auto;overscroll-behavior:contain;padding:20px 18px 18px;border:1px solid #49453d;border-radius:16px;background:var(--gc-bg);box-shadow:0 12px 44px #0003}
 .gala-consent__panel h2{margin:0 30px 10px 0;font-size:17px;font-weight:600;line-height:1.35;letter-spacing:-.02em;color:var(--gc-ink)}
 .gala-consent__panel p{margin:0 0 12px;font-size:13px;line-height:1.5;color:var(--gc-muted)}
 .gala-consent__panel .gala-consent__terms{font-size:12px;margin-bottom:16px}
@@ -20,5 +20,5 @@ footer.gala-consent-footer .gala-consent__settings{display:inline-block;position
 .gala-consent__decline:hover{background:#25231e}
 .gala-consent button:focus-visible,.gala-consent a:focus-visible,footer.gala-consent-footer .gala-consent__settings:focus-visible{outline:2px solid #e5ae50;outline-offset:4px}
 .gala-consent__close:hover{color:var(--gc-ink)}
-@media(max-width:480px){.gala-consent__panel{left:12px;bottom:12px;width:calc(100vw - 24px);max-width:360px;max-height:calc(100dvh - 24px)}}
+@media(max-width:480px){.gala-consent__panel{left:12px;bottom:12px;width:calc(100% - 24px);max-width:360px;max-height:calc(100dvh - 24px)}}
 @media(forced-colors:active){.gala-consent__panel,.gala-consent__actions button{border:1px solid CanvasText}}
