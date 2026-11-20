@@ -15,6 +15,7 @@ function session(saved, blocked = false) {
   const document = {
     referrer: 'https://example.org/', scripts: [],
     createElement: tag => element(tag),
+    querySelector: selector => element(selector),
     getElementsByTagName: () => [{ parentNode: { insertBefore: tag => requests.push(tag.src) } }],
     body: { append() {} }
   };
@@ -23,6 +24,8 @@ function session(saved, blocked = false) {
     const el = {
       name, checked: false, disabled: false, hidden: name.includes('panel'), isConnected: true,
       attrs: {}, handlers: {},
+      children: [], classList: { add() {} },
+      append(child) { this.children.push(child); },
       setAttribute(k, v) { this.attrs[k] = v; },
       addEventListener(k, fn) { this.handlers[k] = fn; },
       querySelector: element,
@@ -48,26 +51,18 @@ function session(saved, blocked = false) {
   vm.runInContext(source, context);
   return { context, nodes, requests, cookies, records, listeners, element, get reloads() { return reloaded; } };
 }
-const record = analytics => JSON.stringify({ version: 1, analytics, personalData: analytics, savedAt: Date.now() });
+const record = analytics => JSON.stringify({ version: 2, analytics, personalData: analytics, savedAt: Date.now() });
 const click = (s, selector) => s.element(selector).emit('click');
-const tick = (s, selector) => { s.element(selector).checked = true; s.element(selector).emit('change'); };
 let checks = 0;
 function test(name, fn) { fn(); checks++; console.log('PASS ' + name); }
 
-test('No tracker until both boxes AND Accept', () => {
+test('No tracker before explicit Allow, no checkboxes or hints', () => {
   const s = session();
   assert.equal(s.requests.length, 0);
   assert.equal(s.element('.gala-consent__panel').hidden, false);
-  assert.equal(s.element('#gala-consent-analytics').checked, false);
-  assert.equal(s.element('#gala-consent-personal').checked, false);
-  assert.equal(s.element('.gala-consent__accept').disabled, true);
-  tick(s, '#gala-consent-analytics');
-  click(s, '.gala-consent__accept');
-  assert.equal(s.requests.length, 0);
-  assert.equal(s.element('.gala-consent__accept').disabled, true);
-  tick(s, '#gala-consent-personal');
   assert.equal(s.element('.gala-consent__accept').disabled, false);
-  assert.equal(s.requests.length, 0);
+  assert.ok(!source.includes('type="checkbox"'));
+  assert.ok(!source.includes('Можно принять'));
   click(s, '.gala-consent__accept');
   assert.deepEqual(s.requests, ['https://mc.yandex.ru/metrika/tag.js?id=114414864']);
   const args = s.context.window.ym.a[0];
@@ -108,9 +103,24 @@ test('Settings permit later acceptance', () => {
   const s = session(record(false));
   click(s, '.gala-consent__settings');
   assert.equal(s.element('.gala-consent__panel').hidden, false);
-  tick(s, '#gala-consent-analytics'); tick(s, '#gala-consent-personal');
   click(s, '.gala-consent__accept');
   assert.equal(s.requests.length, 1);
+});
+test('Settings are attached to the footer', () => {
+  const s = session(record(false));
+  assert.ok(s.element('footer').children.includes(s.element('.gala-consent__settings')));
+});
+test('Old consent version asks again without starting analytics', () => {
+  const s = session(JSON.stringify({version:1,analytics:true,personalData:true,savedAt:Date.now()}));
+  assert.equal(s.requests.length, 0);
+  assert.equal(s.element('.gala-consent__panel').hidden, false);
+});
+test('Closing reopened consent revokes existing permission', () => {
+  const s = session(record(true));
+  click(s, '.gala-consent__settings');
+  click(s, '.gala-consent__close');
+  assert.equal(JSON.parse(s.records.get(key)).analytics, false);
+  assert.equal(s.reloads, 1);
 });
 test('Revoke destroys tracker, clears only analytics cookies and reloads', () => {
   const s = session(record(true));
@@ -134,7 +144,7 @@ test('Unavailable storage fails closed', () => {
   assert.equal(s.requests.length, 0);
 });
 test('Malformed, expired, future and inconsistent consent fails closed', () => {
-  for (const saved of ['{oops', 'null', JSON.stringify({ version: 1, analytics: true, personalData: true, savedAt: 1 }), JSON.stringify({ version: 1, analytics: true, personalData: true, savedAt: Date.now() + 86400000 }), JSON.stringify({ version: 1, analytics: true, personalData: false, savedAt: Date.now() })]) {
+  for (const saved of ['{oops', 'null', JSON.stringify({ version: 2, analytics: true, personalData: true, savedAt: 1 }), JSON.stringify({ version: 2, analytics: true, personalData: true, savedAt: Date.now() + 86400000 }), JSON.stringify({ version: 2, analytics: true, personalData: false, savedAt: Date.now() })]) {
     const s = session(saved);
     assert.equal(s.requests.length, 0);
     assert.equal(s.element('.gala-consent__panel').hidden, false);

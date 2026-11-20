@@ -2,7 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
-const common = '\n<link rel="stylesheet" href="/assets/fonts/fonts.css?v=20261120">\n<link rel="stylesheet" href="/assets/site-consent.css?v=20261120-1">\n<script src="/assets/site-consent.js?v=20261120-1" defer></script>\n';
+const common = '\n<link rel="stylesheet" href="/assets/fonts/fonts.css?v=20261120">\n<link rel="stylesheet" href="/assets/site-consent.css?v=20261121-2">\n<script src="/assets/site-consent.js?v=20261121-2" defer></script>\n';
 let total = 0;
 function walk(directory) {
   for (const item of fs.readdirSync(directory, { withFileTypes: true })) {
