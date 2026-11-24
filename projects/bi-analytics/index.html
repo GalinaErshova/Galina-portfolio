@@ -97,11 +97,6 @@ svg.chart{width:100%;height:auto;display:block}
 .sw.on{background:var(--accent)}.sw.on::after{left:15px}
 
 /* схема */
-.flow{display:grid;gap:8px;max-width:440px}
-.flow div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px}
-.flow div small{display:block;color:var(--muted);font-size:12px}
-.flow .arr{background:none;border:0;padding:0 14px;color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:12px}
-.flow .hl{border-color:var(--accent);background:var(--accent-soft)}
 
 /* шаги */
 .steps{counter-reset:s;list-style:none;padding:0;margin:28px 0 0;display:grid;gap:12px}
@@ -137,7 +132,7 @@ h1,h2,h3{font-family:"Golos Text",Arial,sans-serif;letter-spacing:-.045em}
 h1{max-width:900px;font-size:clamp(40px,5.4vw,68px);line-height:1.02;font-weight:600}
 h2{font-size:clamp(32px,4vw,54px);line-height:1.06;font-weight:570}
 h3{font-size:21px;line-height:1.2;font-weight:600}
-.eyebrow,.num,.mono,.top b,.card dt,.kpi b,.kpi em,.mock-bar span,.flow .arr,.tbl,.steps li::before,.spec b{font-family:"Geist Mono",Consolas,monospace}
+.eyebrow,.num,.mono,.top b,.card dt,.kpi b,.kpi em,.mock-bar span,.tbl,.steps li::before,.spec b{font-family:"Geist Mono",Consolas,monospace}
 .eyebrow{color:var(--accent-strong);font-size:11px;letter-spacing:.11em}
 .num{color:var(--accent);letter-spacing:.1em}
 .top{background:color-mix(in srgb,var(--ground) 94%,transparent);border-color:var(--line);backdrop-filter:blur(18px)}
@@ -155,14 +150,14 @@ a{color:var(--accent)}
 .btn.main:hover{background:var(--accent-strong)}
 .btn.sec{border-color:var(--line);color:var(--ink);background:transparent}
 .btn.sec:hover{border-color:var(--accent);color:var(--accent-strong)}
-.card,.steps li,.spec div,.plans div,.flow div{border-color:var(--line);background:var(--surface);box-shadow:var(--shadow)}
+.card,.steps li,.spec div,.plans div{border-color:var(--line);background:var(--surface);box-shadow:var(--shadow)}
 .card{padding:clamp(22px,3vw,30px)}
 .card .ico{border-radius:9px}
 .chip{border-color:var(--line);border-radius:999px;color:var(--ink-2);background:var(--surface)}
 .mock,.shot{border-color:var(--line);border-radius:12px;box-shadow:var(--shadow)}
 .mock-bar{background:var(--surface-2);border-color:var(--line)}
 .mock-cap{color:var(--muted)}
-.steps li.last,.flow .hl{border-color:var(--accent);background:var(--accent-soft)}
+.steps li.last{border-color:var(--accent);background:var(--accent-soft)}
 .steps li::before{border-radius:50%;background:var(--accent-soft);color:var(--accent-strong)}
 .steps li.last::before,.minibtn.f{background:var(--accent);color:var(--on-accent)}
 .plans div{border-style:solid}
@@ -194,6 +189,38 @@ footer{color:var(--muted)}
   #otchety .grid2>div:first-child{display:block}
   #otchety .grid2>figure{margin-top:24px!important}
 }
+
+.top nav a{flex-shrink:0}
+#kak-rabotaet,#ustroystvo{scroll-margin-top:64px}
+#kak-rabotaet .wrap{max-width:626px}
+.bi-diagram{margin:24px 0 0;min-width:0}
+.bi-diagram-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+.bi-diagram-scroll:focus-visible{outline:2px solid var(--accent-strong);outline-offset:3px}
+.bi-diagram svg{display:block;width:100%;height:auto;background:var(--ground)}
+.bi-diagram-technical svg{min-width:1000px}
+.bi-diagram text{fill:var(--ink);font-family:"Segoe UI",Arial,sans-serif;letter-spacing:0}
+.bi-diagram .stage{font-size:14px;font-weight:650;letter-spacing:1.4px;fill:var(--muted)}
+.bi-diagram .name{font-size:21px;font-weight:650}
+.bi-diagram .info{font-size:17px;fill:var(--muted)}
+.bi-diagram .code{font-family:Consolas,monospace;font-size:15px;fill:var(--muted)}
+.bi-diagram .accent{fill:var(--accent-strong)}
+.bi-diagram .box{fill:var(--surface);stroke:var(--line)}
+.bi-diagram .focus{fill:var(--accent-soft);stroke:var(--accent)}
+.bi-diagram .aside{fill:var(--surface-2);stroke:var(--line)}
+.bi-diagram .rule{stroke:var(--line)}
+.bi-diagram .arrow{fill:none;stroke:var(--muted);stroke-width:1.5}
+.bi-diagram .accent-arrow{stroke:var(--accent-strong);stroke-width:2}
+.bi-diagram .branch{stroke-dasharray:4 3}
+.bi-diagram polygon[data-tone="muted"]{fill:var(--muted)}
+.bi-diagram polygon[data-tone="accent"]{fill:var(--accent-strong)}
+.bi-diagram-customer{max-width:570px}
+.bi-diagram-customer .name{font-size:27px}
+.bi-diagram-customer .info{font-size:23px}
+.bi-diagram-hint{display:none;margin:6px 0 0;color:var(--muted);font-size:14px}
+.bi-diagram-rules{margin-top:28px}
+@media(max-width:1058px){.bi-diagram-hint{display:block}}
+@media print{.bi-diagram-technical svg{min-width:0}.bi-diagram-scroll{overflow:visible}.bi-diagram-hint{display:none}}
+
 </style>
 
 
@@ -204,7 +231,7 @@ footer{color:var(--muted)}
 <header class="top"><div class="wrap">
   <a class="portfolio-brand" href="https://galaershova.ru/" aria-label="На главную портфолио Галины Ершовой"><span class="brand-mark" aria-hidden="true">г<span>.</span></span><span>Галина Ершова<small>Разработчик-консультант</small></span></a>
   <nav>
-    <a href="#istochniki">Источники</a><a href="#komu">Кому подходит</a><a href="#izmeneniya">Изменения</a>
+    <a href="#istochniki">Источники</a><a href="#kak-rabotaet">Как это работает</a><a href="#komu">Кому подходит</a><a href="#izmeneniya">Изменения</a>
     <a href="#chat">Чат</a><a href="#otchety">Отчёты</a><a href="#ustroystvo">Технические детали</a>
     <a href="#razvertyvanie">Развёртывание</a><a href="#svyaz">Связь</a>
   </nav>
@@ -265,10 +292,49 @@ footer{color:var(--muted)}
   </div>
 </section>
 
+<section id="kak-rabotaet" aria-labelledby="bi-how-title">
+  <div class="wrap">
+    <span class="num">02</span>
+    <h2 id="bi-how-title">Как это работает</h2>
+    <figure class="bi-diagram bi-diagram-customer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="20 176 560 604" role="img" aria-labelledby="bi-flow-customer-title bi-flow-customer-desc">
+        <title id="bi-flow-customer-title">Как данные попадают в отчёт</title>
+        <desc id="bi-flow-customer-desc">BI получает данные Google Search Console, Яндекс Вебмастера и Яндекс Метрики, считает и проверяет показатели, показывает отчёт. При серьёзной ошибке доступны предыдущие данные.</desc>
+        <defs>
+          <marker id="bi-flow-customer-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" data-tone="muted"/></marker>
+          <marker id="bi-flow-customer-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" data-tone="accent"/></marker>
+          <marker id="bi-flow-customer-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+
+
+
+        </defs>
+<path class="rule" d="M36 168 h528"/>
+<path class="arrow" d="M300 356 V396" marker-end="url(#bi-flow-customer-arrow)"/>
+<path class="arrow accent-arrow" d="M300 496 V536" marker-end="url(#bi-flow-customer-arrow-accent)"/>
+<rect class="box" x="36" y="192" width="528" height="164" rx="4"/>
+<text class="name" x="60" y="231">Источники данных</text>
+<text class="info" x="60" y="267">Google Search Console — поиск Google</text>
+<text class="info" x="60" y="300">Яндекс Вебмастер — индексация</text>
+<text class="info" x="60" y="333">Яндекс Метрика — посещения</text>
+<rect class="box" x="36" y="396" width="528" height="100" rx="4"/>
+<text class="name" x="60" y="435">Подготовка и проверка</text>
+<text class="info" x="60" y="470">BI сверяет данные и считает показатели.</text>
+<rect class="focus" x="36" y="536" width="528" height="132" rx="4"/>
+<text class="name accent" x="60" y="575">Отчёт о сайте</text>
+<text class="info" x="60" y="611">Показы, клики и визиты.</text>
+<text class="info" x="60" y="643">Сравнение периодов и вопросы в чате.</text>
+<path class="rule" d="M36 700 h528"/>
+<text class="info" x="36" y="733">Если проверка выявила серьёзную ошибку,</text>
+<text class="info" x="36" y="764">в отчёте остаются предыдущие данные.</text>
+      </svg>
+    </figure>
+  </div>
+</section>
+
 <!-- кому -->
 <section id="komu">
   <div class="wrap">
-    <span class="num">02</span>
+    <span class="num">03</span>
     <h2>Для команды, которой нужен ответ, а&nbsp;не&nbsp;ещё один кабинет</h2>
     <div class="grid2" style="margin-top:28px">
       <div class="card"><h3>Подходит, если</h3><ul class="clean" style="margin-top:10px">
@@ -285,7 +351,7 @@ footer{color:var(--muted)}
 <section id="izmeneniya">
   <div class="wrap grid2">
     <div>
-      <span class="num">03</span>
+      <span class="num">04</span>
       <h2>Сначала видно, что изменилось</h2>
       <p class="lead" style="margin-top:14px">Перед отчётами система показывает, насколько свежи данные каждого источника, и&nbsp;собирает блок «Что изменилось»: резкий рост, просадку, смену уровня.</p>
       <p>Наблюдение отвечает на&nbsp;вопросы «где» и&nbsp;«когда». Причину система не&nbsp;придумывает: её проверяет человек, а&nbsp;система подсказывает, куда смотреть.</p>
@@ -297,7 +363,7 @@ footer{color:var(--muted)}
 <!-- чат -->
 <section id="chat">
   <div class="wrap">
-    <span class="num">04</span>
+    <span class="num">05</span>
     <h2>Вопрос к&nbsp;данным&nbsp;— обычными словами</h2>
     <div class="grid2" style="margin-top:24px">
       <div>
@@ -335,7 +401,7 @@ footer{color:var(--muted)}
 <section id="otchety">
   <div class="wrap grid2">
     <div>
-      <span class="num">05</span>
+      <span class="num">06</span>
       <h2>Набор отчётов под вашу команду</h2>
       <p class="lead" style="margin-top:14px">Основные отчёты уже собраны: итоги по&nbsp;каждому источнику, динамика, запросы, страницы, источники трафика, цели. Под задачи команды набор быстро перенастраивается в&nbsp;веб-редакторе, без программиста:</p>
       <ul class="clean">
@@ -354,21 +420,97 @@ footer{color:var(--muted)}
 <!-- устройство -->
 <section id="ustroystvo">
   <div class="wrap">
-    <span class="num">06</span>
+    <span class="num">07</span>
     <h2>Технические детали</h2>
-    <p class="lead" style="margin-top:14px">Языковая модель только переводит вопрос в&nbsp;запрос к&nbsp;данным. Считает сервер, поэтому число в&nbsp;ответе всегда совпадает с&nbsp;числом в&nbsp;базе.</p>
-    <div class="grid2" style="margin-top:28px">
-      <div class="flow">
-        <div>GSC · Вебмастер · Метрика<small>выгрузка по&nbsp;расписанию, дозапрос по&nbsp;API</small></div>
-        <div class="arr">↓</div>
-        <div>Хранилище клиента<small>DuckDB на&nbsp;вашем сервере</small></div>
-        <div class="arr">↓ ежедневный снапшот</div>
-        <div class="hl">Семантический слой<small>метрики, правила подсчёта, панели</small></div>
-        <div class="arr">↓</div>
-        <div>Дашборд · чат · экспорт<small>CSV, PNG, PDF</small></div>
+    <p class="lead" style="margin-top:14px">Модель переводит вопрос в&nbsp;план запроса. Сервер применяет правила расчёта и&nbsp;считает показатели по&nbsp;опубликованному снимку данных. Для комментария модель получает выборку результатов.</p>
+    <figure class="bi-diagram bi-diagram-technical">
+      <div class="bi-diagram-scroll" tabindex="0" role="region" aria-label="Техническая схема потока данных">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 164 1280 500" role="img" aria-labelledby="bi-flow-developers-title bi-flow-developers-desc">
+        <title id="bi-flow-developers-title">Техническая схема потока данных BI</title>
+        <desc id="bi-flow-developers-desc">Выгрузки Google Search Console, Яндекс Вебмастера и Яндекс Метрики поступают в сборку снапшота. Публикация проходит только после проверок. При критической ошибке активна прежняя сборка. Семантический слой и SQL читают DuckDB, FastAPI отдаёт результаты интерфейсу.</desc>
+        <defs>
+
+
+
+
+
+          <marker id="bi-flow-developers-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" data-tone="muted"/>
+          </marker>
+
+
+          <marker id="bi-flow-developers-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" data-tone="accent"/>
+          </marker>
+
+
+          <marker id="bi-flow-developers-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/>
+          </marker>
+
+        </defs>
+<path class="arrow" d="M252 268 H292" marker-end="url(#bi-flow-developers-arrow)"/>
+<path class="arrow accent-arrow" d="M500 268 H540" marker-end="url(#bi-flow-developers-arrow-accent)"/>
+<path class="arrow" d="M748 268 H788" marker-end="url(#bi-flow-developers-arrow)"/>
+<path class="arrow" d="M996 268 H1036" marker-end="url(#bi-flow-developers-arrow)"/>
+<path class="arrow branch" d="M396 356 V396" marker-end="url(#bi-flow-developers-arrow)"/>
+<text class="stage" x="32" y="192">ВЫГРУЗКИ</text>
+<rect class="box" x="32" y="208" width="220" height="148" rx="4"/>
+<text class="name" x="48" y="244">Исходные базы</text>
+<text class="info" x="48" y="272">Google Search Console</text>
+<text class="info" x="48" y="293">Яндекс Вебмастер</text>
+<text class="info" x="48" y="314">Яндекс Метрика</text>
+<text class="code" x="48" y="337">Три файла DuckDB</text>
+<text class="stage" x="292" y="192">ПОДГОТОВКА</text>
+<rect class="box" x="292" y="208" width="208" height="148" rx="4"/>
+<text class="name" x="308" y="244">Сборка снапшота</text>
+<text class="info" x="308" y="272">Копия, URL, сегменты</text>
+<text class="info" x="308" y="293">SQL-агрегаты, сверка</text>
+<text class="info" x="308" y="314">Проверки данных</text>
+<text class="code" x="308" y="337">build_snapshot.py</text>
+<text class="stage accent" x="540" y="192">ПУБЛИКАЦИЯ</text>
+<rect class="focus" x="540" y="208" width="208" height="148" rx="4"/>
+<text class="name accent" x="556" y="244">Снимок данных</text>
+<text class="info" x="556" y="272">Проверки пройдены</text>
+<text class="info" x="556" y="293">DuckDB, manifest.json</text>
+<text class="info" x="556" y="314">Атомарная смена</text>
+<text class="code" x="556" y="337">current.txt</text>
+<text class="stage" x="788" y="192">ЗАПРОСЫ</text>
+<rect class="box" x="788" y="208" width="208" height="148" rx="4"/>
+<text class="name" x="804" y="244">Семантика и SQL</text>
+<text class="info" x="804" y="272">Паспорта метрик</text>
+<text class="info" x="804" y="293">Периоды и разрезы</text>
+<text class="info" x="804" y="314">DuckDB · read-only</text>
+<text class="code" x="804" y="337">src/bi/query</text>
+<text class="stage" x="1036" y="192">ВЫДАЧА</text>
+<rect class="box" x="1036" y="208" width="212" height="148" rx="4"/>
+<text class="name" x="1052" y="244">FastAPI и веб-UI</text>
+<text class="info" x="1052" y="272">Дашборд, чат</text>
+<text class="info" x="1052" y="293">SQL-консоль</text>
+<text class="info" x="1052" y="314">Ряды и таблицы</text>
+<text class="code" x="1052" y="337">POST /api/…</text>
+<rect class="aside" x="292" y="396" width="456" height="56" rx="4"/>
+<text class="info" x="308" y="430">При критической ошибке активна прежняя сборка.</text>
+<path class="rule" d="M32 476 h1216"/>
+<text class="name" x="32" y="514">Как работает чат</text>
+<text class="info" x="32" y="545">Модель составляет план, BI считает.</text>
+<text class="info" x="32" y="570">Для комментария модель получает</text>
+<text class="info" x="32" y="595">выборку рассчитанных результатов.</text>
+<text class="name" x="452" y="514">Как работает SQL-консоль</text>
+<text class="info" x="452" y="545">Пользовательский SQL проходит проверку.</text>
+<text class="info" x="452" y="570">Консоль читает опубликованный снапшот.</text>
+<text class="name" x="860" y="514">Полнота данных</text>
+<text class="info" x="860" y="545">Доступные показатели зависят от того,</text>
+<text class="info" x="860" y="570">какие выгрузки подключены для сайта.</text>
+<text class="info" x="860" y="595">Доступный период — от их истории.</text>
+<text class="code" x="320" y="638">gsc.duckdb · yandex.duckdb · metrika.duckdb</text>
+<text class="code" x="752" y="638">/api/dannye · /api/chat · /api/konsol</text>
+      </svg>
       </div>
-      <div>
-        <h3>Правила подсчёта, которые часто нарушают самодельные отчёты</h3>
+      <figcaption class="bi-diagram-hint">Прокрутите схему, чтобы увидеть все этапы.</figcaption>
+    </figure>
+    <div class="bi-diagram-rules">
+      <h3>Правила подсчёта, которые часто нарушают самодельные отчёты</h3>
         <ul class="clean" style="margin-top:10px">
           <li>средняя позиция взвешивается по&nbsp;показам, а&nbsp;не&nbsp;считается простым средним;</li>
           <li>роботный трафик отделён от&nbsp;живых визитов&nbsp;— на&nbsp;реальных сайтах роботов 5–7,5&nbsp;%;</li>
@@ -376,7 +518,6 @@ footer{color:var(--muted)}
           <li>сравнение периодов считается от&nbsp;последнего дня с&nbsp;данными, а&nbsp;не&nbsp;от&nbsp;«сегодня»;</li>
           <li>история копится дольше 16&nbsp;месяцев, которые хранит сам Google.</li>
         </ul>
-      </div>
     </div>
     <div class="grid3">
       <div class="card"><h3>Безопасность</h3><ul class="clean" style="margin-top:10px">
@@ -391,7 +532,7 @@ footer{color:var(--muted)}
 <!-- развёртывание -->
 <section id="razvertyvanie">
   <div class="wrap">
-    <span class="num">07</span>
+    <span class="num">08</span>
     <h2>Развёртывание</h2>
     <div class="spec">
       <div><b>2</b><small>ядра процессора</small></div>
@@ -415,7 +556,7 @@ footer{color:var(--muted)}
 <!-- связь -->
 <section id="svyaz" class="final">
   <div class="wrap">
-    <span class="num">08</span>
+    <span class="num">09</span>
     <h2>Собрать аналитику вокруг решения?</h2>
     <p class="lead" style="margin-top:14px">Покажу, как система ляжет на&nbsp;задачи вашей команды и&nbsp;данные конкретного сайта.</p>
     <div class="btns">
